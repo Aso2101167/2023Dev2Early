@@ -1,0 +1,52 @@
+CREATE TABLE User(
+user_id CHAR(7),
+user_password VARCHAR(20) NOT NULL,
+user_name VARCHAR(12) NOT NULL,
+user_image VARCHAR(200) NOT NULL,
+PRIMARY KEY (user_id)
+);
+
+CREATE TABLE Category(
+category_id CHAR(7),
+category_name VARCHAR(12) NOT NULL,
+PRIMARY KEY (category_id)
+);
+
+CREATE TABLE Groups(
+group_id CHAR(7),
+group_name VARCHAR(15) NOT NULL,
+category_id CHAR(2) NOT NULL,
+group_member VARCHAR(3) NOT NULL,
+group_text VARCHAR(80) NOT NULL,
+group_image VARCHAR(200) NOT NULL,
+PRIMARY KEY(group_id),
+FOREIGN KEY(category_id) REFERENCES Category(category_id)
+);
+
+CREATE TABLE Group_info(
+group_id CHAR(7),
+user_id CHAR(7),
+join_date DATE NOT NULL,
+FOREIGN KEY(group_id) REFERENCES Groups(group_id),
+FOREIGN KEY(user_id) REFERENCES User(user_id),
+PRIMARY KEY(group_id,user_id)
+);
+
+CREATE TABLE Chat(
+chat_id CHAR(7),
+group_id CHAR(7),
+user_id CHAR(7) NOT NULL,
+chat_sentence VARCHAR(100) NOT NULL,
+chat_date DATE NOT NULL,
+FOREIGN KEY(group_id) REFERENCES Groups(group_id),
+FOREIGN KEY(user_id) REFERENCES User(user_id),
+PRIMARY KEY(chat_id,group_id)
+);
+
+CREATE TABLE Reaction(
+reaction_id CHAR(7),
+chat_id CHAR(7),
+reaction_times VARCHAR(3) NOT NULL,
+FOREIGN KEY(chat_id) REFERENCES Chat(chat_id),
+PRIMARY KEY(reaction_id,chat_id)
+);
