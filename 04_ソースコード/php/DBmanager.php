@@ -3,8 +3,8 @@
     class DBManager {
         //データベース接続のメソッド
         private function dbConnect(){
-            $pdo = new PDO('mysql:host=;dbname=;charset=utf8',
-							'', '');
+            $pdo = new PDO('mysql:host=mysql214.phy.lolipop.lan;dbname=LAA1417860-grp1;charset=utf8',
+							'LAA1417860', 'grp1kaihatu');
 		    return $pdo;
         }
 
