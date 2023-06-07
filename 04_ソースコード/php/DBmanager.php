@@ -12,6 +12,12 @@
         public function InsertUserTbl($getuserid,$getuserpassword,$getusername){
             $pdo = $this->dbConnect();
 
+            $sql = "INSERT INTO carts(user_id,user_password,user_name) VALUES (?,?,?)";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getuserid,PDO::PARAM_INT);
+		    $ps->bindValue(2,$getuserpassword,PDO::PARAM_STR);
+            $ps->bindValue(2,$getusername,PDO::PARAM_STR);
+		    $ps->execute();
         }
 
         //ユーザーIDでユーザー検索するメソッド
@@ -25,6 +31,11 @@
         }
 
         //グループIDでグループ検索するメソッド
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
+
+        //カテゴリーコードでグループ検索するメソッド
         public function  (){
             $pdo = $this->dbConnect();
         }
@@ -57,6 +68,13 @@
         //リアクション情報をチャットIDで検索するメソッド
         public function  (){
             $pdo = $this->dbConnect();
+        }
+
+        //カテゴリーを一覧表示するメソッド
+        public function getCategoryTbl(){
+            $sql = "SELECT * FROM Category";
+		    $searchArray = $pdo->query($sql);
+		    return $searchArray;
         }
     }
 ?>
