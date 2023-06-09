@@ -16,7 +16,7 @@
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getuserid,PDO::PARAM_INT);
 		    $ps->bindValue(2,$getuserpassword,PDO::PARAM_STR);
-            $ps->bindValue(2,$getusername,PDO::PARAM_STR);
+            $ps->bindValue(3,$getusername,PDO::PARAM_STR);
 		    $ps->execute();
         }
 
@@ -39,44 +39,28 @@
         }
 
         //グループIDでグループ検索するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+
 
         //カテゴリーコードでグループ検索するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //グループ参加退出テーブルをユーザーIDで検索するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //グループ参加退出テーブルに追加するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //グループ参加退出テーブルのデータを削除するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //チャットテーブルをグループIDで検索するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //リアクション情報をチャットIDで検索するメソッド
-        public function  (){
-            $pdo = $this->dbConnect();
-        }
+        
 
         //カテゴリーを一覧表示するメソッド
         public function getCategoryTbl(){
