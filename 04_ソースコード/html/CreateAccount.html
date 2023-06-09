@@ -50,20 +50,25 @@
     <main class="form-signin">
       <form action="Top.html" method="post">
         <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+        <h1 class="h3 mb-3 fw-normal">会員情報登録</h1>
+        <p>以下のフォームに必要事項をご入力ください。</p>
     
+
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="Email address">
+          <p>User name</p>
+          <input type="text" class="form-control" id="floatingName" placeholder="ユーザーネームを入力してください">
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <p>User ID</p>
+          <input type="text" class="form-control" id="floatingID" placeholder="IDを入力してください">
         </div>
+        <div class="form-floating">
+          <p>Password</p>
+          <input type="password" class="form-control" id="floatingPassword" placeholder="パスワードを入力してください">
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">create account</button>
     
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-        <p class="mt-5 mb-3 text-muted">----------------------------------------------</p>
         
-        <h1 class="h3 mb-3 fw-normal">新規登録</h1>
-        <button class="w-100 btn btn-lg btn-primary" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
     
       </form>
     </main>
