@@ -23,6 +23,8 @@
         //ユーザーIDでユーザー検索するメソッド
         public function getUserTblById($getid){
             $pdo = $this->dbConnect();
+
+            
         }
 
         //グループを作成するメソッド
