@@ -12,25 +12,17 @@
         public function InsertUserTbl($getuserid,$getuserpassword,$getusername){
             $pdo = $this->dbConnect();
 
-            $sql = "INSERT INTO User(user_id,user_password,user_name) VALUES (?,?,?)";
+            $sql = "INSERT INTO carts(user_id,user_password,user_name) VALUES (?,?,?)";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getuserid,PDO::PARAM_INT);
 		    $ps->bindValue(2,$getuserpassword,PDO::PARAM_STR);
-            $ps->bindValue(3,$getusername,PDO::PARAM_STR);
+            $ps->bindValue(2,$getusername,PDO::PARAM_STR);
 		    $ps->execute();
         }
 
         //ユーザーIDでユーザー検索するメソッド
         public function getUserTblById($getid){
             $pdo = $this->dbConnect();
-
-            $sql = "SELECT * FROM User WHERE user_id = ?";
-		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
-		    $ps->execute();
-
-		    $searchArray = $ps->fetchAll();
-		    return $searchArray;
         }
 
         //グループを作成するメソッド
@@ -39,28 +31,51 @@
         }
 
         //グループIDでグループ検索するメソッド
+        public function  (){
+            $pdo = $this->dbConnect();
 
+            $sql = "SELECT * FROM users WHERE id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $_GET['id'], PDO::PARAM_INT);
+            $ps->execute();
+
+            $pdo = null;
+        }
 
         //カテゴリーコードでグループ検索するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //グループ参加退出テーブルをユーザーIDで検索するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //グループ参加退出テーブルに追加するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //グループ参加退出テーブルのデータを削除するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //チャットテーブルをグループIDで検索するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //リアクション情報をチャットIDで検索するメソッド
-        
+        public function  (){
+            $pdo = $this->dbConnect();
+        }
 
         //カテゴリーを一覧表示するメソッド
         public function getCategoryTbl(){
