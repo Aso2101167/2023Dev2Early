@@ -24,17 +24,13 @@
         public function getUserTblById($getid){
             $pdo = $this->dbConnect();
 
-<<<<<<< HEAD
             $sql = "SELECT * FROM User WHERE user_id = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
 		    $ps->execute();
-	
+
 		    $searchArray = $ps->fetchAll();
 		    return $searchArray;
-=======
-            
->>>>>>> ec29ffbe8c0ab3d93da4fee3181e5b16eacaab35
         }
 
         //グループを作成するメソッド
