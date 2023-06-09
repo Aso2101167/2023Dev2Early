@@ -23,8 +23,6 @@
         //ユーザーIDでユーザー検索するメソッド
         public function getUserTblById($getid){
             $pdo = $this->dbConnect();
-
-            
         }
 
         //グループを作成するメソッド
@@ -35,6 +33,13 @@
         //グループIDでグループ検索するメソッド
         public function  (){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM users WHERE id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $_GET['id'], PDO::PARAM_INT);
+            $ps->execute();
+
+            $pdo = null;
         }
 
         //カテゴリーコードでグループ検索するメソッド
