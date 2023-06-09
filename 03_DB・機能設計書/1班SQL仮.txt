@@ -7,20 +7,19 @@ PRIMARY KEY (user_id)
 );
 
 CREATE TABLE Category(
-category_id CHAR(7),
+category_code CHAR(7),
 category_name VARCHAR(12) NOT NULL,
-PRIMARY KEY (category_id)
+PRIMARY KEY (category_code)
 );
 
 CREATE TABLE Groups(
 group_id CHAR(7),
 group_name VARCHAR(15) NOT NULL,
-category_id CHAR(2) NOT NULL,
-group_member VARCHAR(3) NOT NULL,
+category_code CHAR(2) NOT NULL,
 group_text VARCHAR(80) NOT NULL,
 group_image VARCHAR(200) NOT NULL,
 PRIMARY KEY(group_id),
-FOREIGN KEY(category_id) REFERENCES Category(category_id)
+FOREIGN KEY(category_code) REFERENCES Category(category_code)
 );
 
 CREATE TABLE Group_info(
@@ -44,9 +43,9 @@ PRIMARY KEY(chat_id,group_id)
 );
 
 CREATE TABLE Reaction(
-reaction_id CHAR(7),
+reaction_code CHAR(7),
 chat_id CHAR(7),
-reaction_times VARCHAR(3) NOT NULL,
+reaction_times INT(3) NOT NULL,
 FOREIGN KEY(chat_id) REFERENCES Chat(chat_id),
-PRIMARY KEY(reaction_id,chat_id)
+PRIMARY KEY(reaction_code,chat_id)
 );
