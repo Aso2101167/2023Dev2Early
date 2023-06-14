@@ -9,7 +9,7 @@ foreach($searchArray as $row){
         header('Location:../html/Top.html');
       exit;
     } else {
-    echo 'IDとパスワードが違います。'
+    echo 'IDとパスワードが違います。';
     }
 }
 ?>
