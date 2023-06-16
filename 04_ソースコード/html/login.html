@@ -1,3 +1,4 @@
+<?php session_start();?>
 <DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,15 +54,24 @@
     <h1 class="h3 mb-3 fw-normal">ログイン</h1>
 
     <div class="form-floating">
-      <input type="textbox" class="form-control" id="floatingInput" placeholder="Email address"name="userid">
+      <input type="text" class="form-control" id="floatingInput" placeholder="userid"name="userid">
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password"name="password">
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+    <?php 
+    if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "idError"){
+      echo "<h3><font color = 'red'>IDが違います。</font></h3>";
+      $_SESSION['loginError'] = "";
+    }else if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "passError"){
+      echo "<h3><font color = 'red'>パスワードが違います。</font></h3>";
+      $_SESSION['loginError'] = "";
+    }
+    ?>
     <p class="mt-5 mb-3 text-muted">----------------------------------------------</p>
-    
+
     <h1 class="h3 mb-3 fw-normal">新規登録</h1>
     <button class="w-100 btn btn-lg btn-primary" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
 
