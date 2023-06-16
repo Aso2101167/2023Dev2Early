@@ -64,8 +64,10 @@
     <?php 
     if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "idError"){
       echo "<h3><font color = 'red'>IDが違います。</font></h3>";
+      $_SESSION['loginError'] = "";
     }else if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "passError"){
       echo "<h3><font color = 'red'>パスワードが違います。</font></h3>";
+      $_SESSION['loginError'] = "";
     }
     ?>
     <p class="mt-5 mb-3 text-muted">----------------------------------------------</p>
