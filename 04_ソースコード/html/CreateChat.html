@@ -48,7 +48,7 @@
       <body class="text-center">
         
     <main class="form-signin">
-      <form action="Top.html" method="post">
+      <form action="../php/CreateChat.php" method="post">
         <div>
             <!--戻るボタン-->
         <button class="recommendation-1st">
@@ -58,46 +58,24 @@
         </div>
         <div>
             <p>オープンチャット名</p>
-            <input type="search" class="form-chat" id="openchatname" placeholder="オープンチャット名を入力">
+            <input type="search" class="form-chat" id="openchatname" placeholder="オープンチャット名を入力"name="chatname">
 
             <p>詳細</p>
-            <input type="search" class="form-detail" id="detail" placeholder="詳細を入力">
+            <input type="search" class="form-detail" id="detail" placeholder="詳細を入力"name="detail">
         </div>
         <div>
             <p>カテゴリー</p>
-            <button class="movie">
-                <img src="path/to/image.jpg" alt="映画・舞台">
-            </button>
-            <button class="study">
-                <img src="path/to/image.jpg" alt="学校・同窓会">
-            </button>
-        </div>
+            <button type="button" onclick="buttonClicked('category1')"><img src="path/to/image.jpg" alt="映画・舞台"></button>
+            <button type="button" onclick="buttonClicked('category2')"><img src="path/to/image.jpg" alt="学校・同窓会"></button>
+            <button type="button" onclick="buttonClicked('category3')"><img src="path/to/image.jpg" alt="料理・グルメ"></button>
+            <button type="button" onclick="buttonClicked('category4')"><img src="path/to/image.jpg" alt="旅行"></button>
+            <button type="button" onclick="buttonClicked('category5')"><img src="path/to/image.jpg" alt="ゲーム"></button>
+            <button type="button" onclick="buttonClicked('category6')"><img src="path/to/image.jpg" alt="スポーツ"></button>
+            <button type="button" onclick="buttonClicked('category7')"><img src="path/to/image.jpg" alt="音楽"></button>
+            <button type="button" onclick="buttonClicked('category8')"><img src="path/to/image.jpg" alt="動物・ペット"></button>
+
         <div>
-            <button class="cooking">
-                <img src="path/to/image.jpg" alt="料理・グルメ">
-            </button>
-            <button class="tirp">
-                <img src="path/to/image.jpg" alt="旅行">
-            </button>
-        </div>
-        <div>
-            <button class="game">
-                <img src="path/to/image.jpg" alt="ゲーム">
-            </button>
-            <button class="sports">
-                <img src="path/to/image.jpg" alt="スポーツ">
-            </button>
-        </div>
-        <div>
-            <button class="music">
-                <img src="path/to/image.jpg" alt="音楽">
-            </button>
-            <button class="pet">
-                <img src="path/to/image.jpg" alt="動物・ペット">
-            </button>
-        </div>
-        <div>
-            <button class="CreateChatBotton" type="submit">Create Chat</button>
+            <input class="w-100 btn btn-lg btn-primary" type="submit" name="createchat" value="create chat">
         </div>
       </form>
     </main>
