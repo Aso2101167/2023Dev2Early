@@ -34,8 +34,15 @@
         }
 
         //グループを作成するメソッド
-        public function InsertGroupTbl($getgroupname,$getcategorycode,$getgrouptext){
+        public function InsertGroupTbl($getgroupname,$getgrouptext,$getcategorycode){
             $pdo = $this->dbConnect();
+
+            $sql = "INSERT INTO XXX(group_name,group_text,group_categorycode) VALUES(?,?,?)";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1,$getgroupname,PDO::PARAM_STR);
+            $ps->bindValue(2,$getgrouptext,PDO::PARAM_STR);
+            $ps->bindValue()
+            $ps->execute();
         }
 
         //グループIDでグループ検索するメソッド
