@@ -32,7 +32,7 @@ PRIMARY KEY(group_id,user_id)
 );
 
 CREATE TABLE Chat(
-chat_id CHAR(7),
+chat_id INT(7) AUTO_INCREMENT,
 group_id CHAR(7),
 user_id CHAR(7) NOT NULL,
 chat_sentence VARCHAR(100) NOT NULL,
@@ -44,7 +44,7 @@ PRIMARY KEY(chat_id,group_id)
 
 CREATE TABLE Reaction(
 reaction_code CHAR(7),
-chat_id CHAR(7),
+chat_id INT(7),
 reaction_times INT(3) NOT NULL,
 FOREIGN KEY(chat_id) REFERENCES Chat(chat_id),
 PRIMARY KEY(reaction_code,chat_id)
