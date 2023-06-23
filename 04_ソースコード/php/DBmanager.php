@@ -41,7 +41,7 @@
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1,$getgroupname,PDO::PARAM_STR);
             $ps->bindValue(2,$getgrouptext,PDO::PARAM_STR);
-            $ps->bindValue()
+            $ps->bindValue();
             $ps->execute();
         }
 
@@ -85,9 +85,7 @@
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
-		    foreach ($searchArray as $row) {
-                echo $row['chat_sentence'] . "<br>";
-            }
+		    return $searchArray;
         }
 
         //リアクション情報をチャットIDで検索するメソッド
@@ -114,6 +112,29 @@
             $ps->bindValue(3,$getchatsentence,PDO::PARAM_STR);
             $ps->bindValue(4,$dayStr,PDO::PARAM_STR);
 		    $ps->execute();
+        }
+
+        public function getLatestChatByGroupId($getgroupid){
+            $pdo = $this->dbConnect();
+
+            $sql = "SELECT chat_id, chat_sentence FROM Chat WHERE group_id = ? ORDER BY chat_id DESC LIMIT 1";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetch();
+            return $searchArray;
+        }
+
+        public function getLastChatId() {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT MAX(chat_id) FROM Chat";
+            $ps = $pdo->prepare($sql);
+            $ps->execute();
+        
+            $lastChatId = $ps->fetchColumn();
+            return $lastChatId;
         }
     }
 ?>
