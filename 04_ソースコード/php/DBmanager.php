@@ -45,12 +45,12 @@
         }
 
         //グループIDでグループ検索するメソッド
-        public function getGroupTblByGroupId(){
+        public function getGroupTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE group_id = ?";
+            $sql = "SELECT * FROM Groups WHERE group_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
