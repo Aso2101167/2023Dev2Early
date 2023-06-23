@@ -114,5 +114,10 @@
             $ps->bindValue(4,$dayStr,PDO::PARAM_STR);
 		    $ps->execute();
         }
+
+        //グループの説明文を
+        public function  deleteGroup_infoTbl(){
+            $pdo = $this->dbConnect();
+        }
     }
 ?>
