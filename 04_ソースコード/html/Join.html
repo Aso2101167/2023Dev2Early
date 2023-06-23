@@ -57,21 +57,28 @@
           </button>
             オープンチャット参加
         </div>
+      </form>
         <div>
             <img class="Chatimg" src="" alt="チャット画像">
             <h1 class="chatName">
               <?php
                 require_once '../php/DBmanager.php';
                 $cls = new DBManager();
-
+                $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
+                $groupname = "";
+                foreach($searchArray as $row){
+                  $groupname = $row['group_name'];
+                }
+                echo $groupname;
               ?></h1>
             <p class="num"></p>
             
         </div>
         </div>
             <p class="tag"></p>
+        <form action="../php/Join.php" method="POST">
         <div>
-            <button class="JoinBotton" type="submit">Join</button>
+            <button class="JoinBotton" type="submit" name="" value="">Join</button>
         </div>
       </form>
     </main>
