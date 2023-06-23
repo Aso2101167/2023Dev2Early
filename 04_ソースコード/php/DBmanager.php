@@ -47,21 +47,53 @@
         //グループIDでグループ検索するメソッド
         public function getGroupTblByGroupId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE group_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //カテゴリーコードでグループ検索するメソッド
         public function getGroupTblByCategoryCode(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE category_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
         public function getGroupInfoTblByGroupId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE group_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //グループ参加退出テーブルをユーザーIDで検索するメソッド
         public function  getGroupInfoTblByUserId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE user_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //グループ参加退出テーブルに追加するメソッド
@@ -92,6 +124,14 @@
         //リアクション情報をチャットIDで検索するメソッド
         public function  getReactionTblByChatId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE chat_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //カテゴリーを一覧表示するメソッド
@@ -113,11 +153,6 @@
             $ps->bindValue(3,$getchatsentence,PDO::PARAM_STR);
             $ps->bindValue(4,$dayStr,PDO::PARAM_STR);
 		    $ps->execute();
-        }
-
-        //グループの説明文を
-        public function  deleteGroup_infoTbl(){
-            $pdo = $this->dbConnect();
         }
     }
 ?>
