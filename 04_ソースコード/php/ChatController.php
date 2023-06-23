@@ -1,14 +1,14 @@
 <?php
   header('Content-type: application/json');
   session_start();
+  require_once 'DBmanager.php';
+  $cls = new DBManager();
+  $groupid = "1234567";
+      $userid = "1234567";
   if (!isset($_SESSION['lastChatId'])) {
     $latestChat = $cls->getLatestChatByGroupId($groupid);
     $_SESSION['lastChatId'] = $latestChat['chat_id'];
 }
-    require_once 'DBmanager.php';
-    $cls = new DBManager();
-    $groupid = "1234567";
-        $userid = "1234567";
   // ルーティング
   switch($_POST['action']) {
     case 'get' :
