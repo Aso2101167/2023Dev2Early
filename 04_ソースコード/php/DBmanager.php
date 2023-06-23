@@ -34,35 +34,66 @@
         }
 
         //グループを作成するメソッド
-        public function InsertGroupTbl($getgroupname,$getgrouptext,$getcategorycode){
+        public function InsertGroupTbl($getgroupname,$getgrouptext){
             $pdo = $this->dbConnect();
 
-            $sql = "INSERT INTO XXX(group_name,group_text,group_categorycode) VALUES(?,?,?)";
+            $sql = "INSERT INTO XXX(group_name,group_text) VALUES(?,?)";
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1,$getgroupname,PDO::PARAM_STR);
             $ps->bindValue(2,$getgrouptext,PDO::PARAM_STR);
-            $ps->bindValue();
             $ps->execute();
         }
 
         //グループIDでグループ検索するメソッド
         public function getGroupTblByGroupId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE group_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //カテゴリーコードでグループ検索するメソッド
         public function getGroupTblByCategoryCode(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE category_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
         public function getGroupInfoTblByGroupId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE group_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //グループ参加退出テーブルをユーザーIDで検索するメソッド
         public function  getGroupInfoTblByUserId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE user_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //グループ参加退出テーブルに追加するメソッド
@@ -91,6 +122,14 @@
         //リアクション情報をチャットIDで検索するメソッド
         public function  getReactionTblByChatId(){
             $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM User WHERE chat_id = ?";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetchAll();
+		    return $searchArray;
         }
 
         //カテゴリーを一覧表示するメソッド
