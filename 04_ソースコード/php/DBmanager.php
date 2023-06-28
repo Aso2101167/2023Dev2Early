@@ -45,12 +45,12 @@
         }
 
         //グループIDでグループ検索するメソッド
-        public function getGroupTblByGroupId($getgroupid){
+        public function getGroupTblByGroupId($getid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM Groups WHERE group_id = ?";
+            $sql = "SELECT * FROM User WHERE group_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
@@ -58,7 +58,7 @@
         }
 
         //カテゴリーコードでグループ検索するメソッド
-        public function getGroupTblByCategoryCode(){
+        public function getGroupTblByCategoryCode($getid){
             $pdo = $this->dbConnect();
 
             $sql = "SELECT * FROM User WHERE category_id = ?";
@@ -71,7 +71,7 @@
         }
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
-        public function getGroupInfoTblByGroupId(){
+        public function getGroupInfoTblByGroupId($getid){
             $pdo = $this->dbConnect();
 
             $sql = "SELECT * FROM User WHERE group_id = ?";
@@ -84,7 +84,7 @@
         }
 
         //グループ参加退出テーブルをユーザーIDで検索するメソッド
-        public function  getGroupInfoTblByUserId(){
+        public function  getGroupInfoTblByUserId($getid){
             $pdo = $this->dbConnect();
 
             $sql = "SELECT * FROM User WHERE user_id = ?";
@@ -116,7 +116,9 @@
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
-		    return $searchArray;
+		    foreach ($searchArray as $row) {
+                echo $row['chat_sentence'] . "<br>";
+            }
         }
 
         //リアクション情報をチャットIDで検索するメソッド
@@ -151,29 +153,6 @@
             $ps->bindValue(3,$getchatsentence,PDO::PARAM_STR);
             $ps->bindValue(4,$dayStr,PDO::PARAM_STR);
 		    $ps->execute();
-        }
-
-        public function getLatestChatByGroupId($getgroupid){
-            $pdo = $this->dbConnect();
-
-            $sql = "SELECT chat_id, chat_sentence FROM Chat WHERE group_id = ? ORDER BY chat_id DESC LIMIT 1";
-		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
-		    $ps->execute();
-
-		    $searchArray = $ps->fetch();
-            return $searchArray;
-        }
-
-        public function getLastChatId() {
-            $pdo = $this->dbConnect();
-        
-            $sql = "SELECT MAX(chat_id) FROM Chat";
-            $ps = $pdo->prepare($sql);
-            $ps->execute();
-        
-            $lastChatId = $ps->fetchColumn();
-            return $lastChatId;
         }
     }
 ?>
