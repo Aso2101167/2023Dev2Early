@@ -48,7 +48,7 @@
       <body class="text-center">
         
     <main class="form-signin">
-      <form action="../php/CreateChat.php" method="post">
+      <form id="createChatForm" action="../php/CreateChat.php" method="post">
         <div>
             <!--戻るボタン-->
         <button class="recommendation-1st">
@@ -61,20 +61,18 @@
             <input type="search" class="form-chat" id="openchatname" placeholder="オープンチャット名を入力"name="chatname">
 
             <p>詳細</p>
-            <input type="search" class="form-detail" id="detail" placeholder="詳細を入力"name="detail">
+            <input type="textbox" class="form-detail" id="detail" placeholder="詳細を入力"name="detail">
         </div>
         <div>
             <p>カテゴリー</p>
-            <button type="button" onclick="buttonClicked('category1')"><img src="path/to/image.jpg" alt="映画・舞台"></button>
-            <button type="button" onclick="buttonClicked('category2')"><img src="path/to/image.jpg" alt="学校・同窓会"></button>
-            <button type="button" onclick="buttonClicked('category3')"><img src="path/to/image.jpg" alt="料理・グルメ"></button>
-            <button type="button" onclick="buttonClicked('category4')"><img src="path/to/image.jpg" alt="旅行"></button>
-            <button type="button" onclick="buttonClicked('category5')"><img src="path/to/image.jpg" alt="ゲーム"></button>
-            <button type="button" onclick="buttonClicked('category6')"><img src="path/to/image.jpg" alt="スポーツ"></button>
-            <button type="button" onclick="buttonClicked('category7')"><img src="path/to/image.jpg" alt="音楽"></button>
-            <button type="button" onclick="buttonClicked('category8')"><img src="path/to/image.jpg" alt="動物・ペット"></button>
             <?php 
-            
+            session_start();
+            require_once '../php/DBmanager.php';
+            $cls = new DBManager();
+            $selectArray = $cls->getCategoryTbl();
+            foreach($selectArray as $row){
+              echo '<input type="radio" value="'.$row['category_code'].'" name="category"><img src="path/to/image.jpg" alt="'.$row['category_name'].'"></button>';
+            }
             ?>
         <div>
             <input class="w-100 btn btn-lg btn-primary" type="submit" name="createchat" value="create chat">

@@ -12,7 +12,7 @@
         public function InsertUserTbl($getuserid,$getuserpassword,$getusername){
             $pdo = $this->dbConnect();
 
-            $sql = "INSERT INTO Users(user_id,user_password,user_name) VALUES (?,?,?)";
+            $sql = "INSERT INTO User(user_id,user_password,user_name) VALUES (?,?,?)";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getuserid,PDO::PARAM_INT);
 		    $ps->bindValue(2,$getuserpassword,PDO::PARAM_STR);
@@ -34,14 +34,20 @@
         }
 
         //グループを作成するメソッド
-        public function InsertGroupTbl($getgroupname,$getgrouptext){
+        public function InsertGroupTbl($getgroupname,$getcategorycode,$getgrouptext){
             $pdo = $this->dbConnect();
 
-            $sql = "INSERT INTO XXX(group_name,group_text) VALUES(?,?)";
+            $group_id = mt_rand(1000000, 9999999);
+
+            $sql = "INSERT INTO Groups(group_id,group_name,category_code,group_text) VALUES(?,?,?,?)";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1,$getgroupname,PDO::PARAM_STR);
-            $ps->bindValue(2,$getgrouptext,PDO::PARAM_STR);
+            $ps->bindValue(1,$group_id,PDO::PARAM_INT);
+            $ps->bindValue(2,$getgroupname,PDO::PARAM_STR);
+            $ps->bindValue(3,$getcategorycode,PDO::PARAM_STR);
+            $ps->bindValue(4,$getgrouptext,PDO::PARAM_STR);
             $ps->execute();
+
+            return $group_id;
         }
 
         //グループIDでグループ検索するメソッド
@@ -99,6 +105,14 @@
         //グループ参加退出テーブルに追加するメソッド
         public function InsertGroup_infoTbl($getgroupid, $getuserid){
             $pdo = $this->dbConnect();
+
+            $sql = "INSERT INTO Group_info(group_id,user_id,join_date) VALUES (?,?,?)";
+		    $ps = $pdo->prepare($sql);
+            $dayStr = date("Y/m/d");
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
+		    $ps->bindValue(2,$getuserid,PDO::PARAM_INT);
+            $ps->bindValue(3,$dayStr,PDO::PARAM_STR);
+		    $ps->execute();
         }
 
         //グループ参加退出テーブルのデータを削除するメソッド
@@ -134,6 +148,8 @@
 
         //カテゴリーを一覧表示するメソッド
         public function getCategoryTbl(){
+            $pdo = $this->dbConnect();
+
             $sql = "SELECT * FROM Category";
 		    $searchArray = $pdo->query($sql);
 		    return $searchArray;

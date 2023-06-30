@@ -4,7 +4,7 @@
   require_once 'DBmanager.php';
   $cls = new DBManager();
   $groupid = "1234567";
-      $userid = "1234567";
+      $userid = $_SESSION['userid'];
   if (!isset($_SESSION['lastChatId'])) {
     $latestChat = $cls->getLatestChatByGroupId($groupid);
     $_SESSION['lastChatId'] = $latestChat['chat_id'];

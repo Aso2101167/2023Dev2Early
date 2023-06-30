@@ -66,10 +66,11 @@
                 $cls = new DBManager();
                 $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
                 $groupname = "";
+                $_SESSION['groupid'] = $_POST['groupid'];
                 foreach($searchArray as $row){
                   $groupname = $row['group_name'];
                 }
-                echo $groupname;
+                echo $groupname.$_SESSION['userid'];
               ?></h1>
             <p class="num"></p>
             
@@ -78,7 +79,7 @@
             <p class="tag"></p>
         <form action="../php/Join.php" method="POST">
         <div>
-            <button class="JoinBotton" type="submit" name="" value="">Join</button>
+            <button class="JoinBotton" type="submit" name="test" value="1234567">Join</button>
         </div>
       </form>
     </main>

@@ -1,10 +1,10 @@
   <?php
-  session_start();
+    session_start();
     require_once '../php/DBmanager.php';
     $cls = new DBManager();
-    $groupid = "1234567";
-    $userid = "1234567";
-    ?>
+    $groupid = $_GET['groupid'];
+    $userid = $_GET['userid'];
+  ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -22,9 +22,9 @@
             $searchArray = $cls->getChatTblByGroupId($groupid);
             foreach($searchArray as $row){
               if($row['user_id'] == $userid){
-                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'><p>".$row['chat_sentence']."</p></div>";
+                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'>".$row['user_id']."<p>".$row['chat_sentence']."</p></div>";
               }else{
-                echo "<div class='col-sm-8 alert alert-warning'><p>".$row['chat_sentence']."</p></div>";
+                echo "<div class='col-sm-8 alert alert-warning'>".$row['user_id']."<p>".$row['chat_sentence']."</p></div>";
               }
             }
             $latestChat = $cls->getLatestChatByGroupId($groupid);
