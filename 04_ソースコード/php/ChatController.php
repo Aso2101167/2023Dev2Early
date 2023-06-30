@@ -35,7 +35,7 @@
     // 最新のメッセージが存在し、IDが前回の取得時と異なる場合のみ返す
     if ($latestChat && $latestChat['chat_id'] != $lastChatId) {
         $_SESSION['lastChatId'] = $latestChat['chat_id'];
-        return json_encode(['message' => $latestChat['chat_sentence']]);
+        return json_encode(['userid' => $latestChat['user_id'],'message' => $latestChat['chat_sentence']]);
     }
   }
 
@@ -48,6 +48,6 @@
     $cls->InsertChatTbl($groupid,$userid,$msg);
     // 最新のメッセージのIDをセッションに保存
     $_SESSION['lastChatId'] = $cls->getLastChatId();
-    return json_encode(['message' => $msg]);
+    return json_encode(['userid' => $userid,'message' => $msg]);
   }
  ?>
