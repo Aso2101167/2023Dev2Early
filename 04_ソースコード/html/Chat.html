@@ -14,6 +14,7 @@
     <title>チャットルーム</title>
   </head>
   <body>
+    <button onclick="location.href='./Top.html'">戻る</button>
     <section>
       <h2>チャットルーム</h2>
       <div class="row">
@@ -22,9 +23,9 @@
             $searchArray = $cls->getChatTblByGroupId($groupid);
             foreach($searchArray as $row){
               if($row['user_id'] == $userid){
-                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'>".$row['user_id']."<p>".$row['chat_sentence']."</p></div>";
+                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div>";
               }else{
-                echo "<div class='col-sm-8 alert alert-warning'>".$row['user_id']."<p>".$row['chat_sentence']."</p></div>";
+                echo "<div class='col-sm-8 alert alert-warning'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div>";
               }
             }
             $latestChat = $cls->getLatestChatByGroupId($groupid);

@@ -124,15 +124,16 @@
         public function getChatTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM Chat WHERE group_id = ?";
+            $sql = "SELECT Chat.*, User.user_name
+            FROM Chat
+            JOIN User ON Chat.user_id = User.user_id
+            WHERE Chat.group_id = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
-		    foreach ($searchArray as $row) {
-                echo $row['chat_sentence'] . "<br>";
-            }
+		    return $searchArray;
         }
 
         //リアクション情報をチャットIDで検索するメソッド
@@ -169,6 +170,34 @@
             $ps->bindValue(3,$getchatsentence,PDO::PARAM_STR);
             $ps->bindValue(4,$dayStr,PDO::PARAM_STR);
 		    $ps->execute();
+        }
+
+        public function getLatestChatByGroupId($getgroupid){
+            $pdo = $this->dbConnect();
+
+            $sql = "SELECT Chat.chat_id, Chat.chat_sentence, User.user_name
+            FROM Chat
+            JOIN User ON Chat.user_id = User.user_id
+            WHERE Chat.group_id = ?
+            ORDER BY Chat.chat_id DESC
+            LIMIT 1";
+		    $ps = $pdo->prepare($sql);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
+		    $ps->execute();
+
+		    $searchArray = $ps->fetch();
+            return $searchArray;
+        }
+
+        public function getLastChatId() {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT MAX(chat_id) FROM Chat";
+            $ps = $pdo->prepare($sql);
+            $ps->execute();
+        
+            $lastChatId = $ps->fetchColumn();
+            return $lastChatId;
         }
     }
 ?>

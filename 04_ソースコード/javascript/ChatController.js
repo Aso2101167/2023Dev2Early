@@ -13,7 +13,7 @@ var ChatController = {
         data: {message : message, action : 'send'},
         success : function(response){
           var message = $('<div>', { "class" : "col-sm-offset-4 col-sm-8 alert alert-success"});
-          message.append($('<p>', { "html" : response['userid'] + '<br>' +response['message'] }));
+          message.append($('<p>', { "html" : response['username'] + '<br>' +response['message'] }));
           $('.messages').append(message);
         },
         error: function(error){
@@ -32,7 +32,7 @@ var ChatController = {
           data: {action : 'get'},
           success : function(response){
             var message = $('<div>', { "class" : "col-sm-8 alert alert-warning"});
-            message.append($('<p>', { "html" :response['userid'] + '<br>' + response['message'] }));
+            message.append($('<p>', { "html" : response['username'] + '<br>' + response['message'] }));
             $('.messages').append(message);
   
           },
