@@ -1,4 +1,9 @@
-<?php session_start();?>
+<?php session_start();
+require_once '../php/SessionCheck.php';
+
+// セッションチェックを行う
+$sessionCheck = new SessionCheck();
+$sessionCheck->checkSession();?>
 <DOCTYPE html>
     <html lang="en">
         <head>
