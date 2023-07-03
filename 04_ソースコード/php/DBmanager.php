@@ -51,12 +51,12 @@
         }
 
         //グループIDでグループ検索するメソッド
-        public function getGroupTblByGroupId($getid){
+        public function getGroupTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE group_id = ?";
+            $sql = "SELECT * FROM Groups WHERE group_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_STR);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
@@ -64,12 +64,12 @@
         }
 
         //カテゴリーコードでグループ検索するメソッド
-        public function getGroupTblByCategoryCode($getid){
+        public function getGroupTblByCategoryCode($getcategorycode){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE category_id = ?";
+            $sql = "SELECT * FROM Groups WHERE category_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getcategorycode,PDO::PARAM_STR);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
@@ -77,12 +77,12 @@
         }
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
-        public function getGroupInfoTblByGroupId($getid){
+        public function getGroupInfoTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE group_id = ?";
+            $sql = "SELECT * FROM Group_info WHERE group_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_STR);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();

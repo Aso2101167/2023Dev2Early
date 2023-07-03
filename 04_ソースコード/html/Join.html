@@ -77,14 +77,22 @@ $sessionCheck->checkSession();?>
                 }
                 echo $groupname.$_SESSION['userid'];
               ?></h1>
-            <p class="num"></p>
+            <p class="num">
+              <?php
+            $num = $cls->getGroupInfoTblByGroupId($_POST['groupid']);
+            $cnt=0;
+            foreach($num as $row){
+              $cnt+=1;
+            }
+            echo $cnt;
+            ?>
+            </p>
             
-        </div>
         </div>
             <p class="tag"></p>
         <form action="../php/Join.php" method="POST">
         <div>
-            <button class="JoinBotton" type="submit" name="test" value="1234567">Join</button>
+            <button class="JoinBotton" type="submit" name="join" value="<?php echo $_POST['groupid'];?>">Join</button>
         </div>
       </form>
     </main>
