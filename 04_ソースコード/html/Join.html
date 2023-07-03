@@ -64,20 +64,25 @@ $sessionCheck->checkSession();?>
         </div>
       </form>
         <div>
-            <img class="Chatimg" src="" alt="チャット画像">
+          <?php 
+              require_once '../php/DBmanager.php';
+              $cls = new DBManager();
+              $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
+              foreach($searchArray as $row){
+                $groupimg = $row['group_image'];
+              }
+          ?>
+          <img class="Chatimg" src="../img/<?php echo $groupimg; ?>" alt="チャット画像">
             <h1 class="chatName">
               <?php
-                require_once '../php/DBmanager.php';
-                $cls = new DBManager();
-                $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
                 $groupname = "";
                 $_SESSION['groupid'] = $_POST['groupid'];
                 foreach($searchArray as $row){
                   $groupname = $row['group_name'];
                 }
-                echo $groupname.$_SESSION['userid'];
+                echo $groupname;
               ?></h1>
-            <p class="num">
+            <p class="num">参加人数：
               <?php
             $num = $cls->getGroupInfoTblByGroupId($_POST['groupid']);
             $cnt=0;
@@ -85,11 +90,18 @@ $sessionCheck->checkSession();?>
               $cnt+=1;
             }
             echo $cnt;
-            ?>
+            ?>人
             </p>
             
         </div>
-            <p class="tag"></p>
+            <p class="tag">カテゴリー：<?php foreach($searchArray as $row){
+              echo $row['category_name'];
+            }?></p>
+            <p>グループ説明文：
+              <?php foreach($searchArray as $row){
+                echo $row['group_text'];
+              }?>
+            </p>
         <form action="../php/Join.php" method="POST">
         <div>
             <button class="JoinBotton" type="submit" name="join" value="<?php echo $_POST['groupid'];?>">Join</button>

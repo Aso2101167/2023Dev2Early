@@ -54,7 +54,10 @@
         public function getGroupTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM Groups WHERE group_id = ?";
+            $sql = "SELECT g.*, c.category_name 
+            FROM Groups g
+            INNER JOIN Category c ON g.category_code = c.category_code
+            WHERE g.group_id = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getgroupid,PDO::PARAM_STR);
 		    $ps->execute();
