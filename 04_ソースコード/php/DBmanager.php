@@ -93,7 +93,10 @@
         public function  getGroupInfoTblByUserId($getid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE user_id = ?";
+            $sql = "SELECT Group_info.*, Groups.group_name
+            FROM Group_info
+            JOIN Groups ON Group_info.group_id = Groups.group_id
+            WHERE Group_info.user_id = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
 		    $ps->execute();

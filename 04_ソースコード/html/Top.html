@@ -1,3 +1,4 @@
+<?php session_start();?>
 <DOCTYPE html>
     <html lang="en">
         <head>
@@ -56,17 +57,6 @@
         <div class="form-floating">
             <input type="search" class="form-control" id="searchbox" placeholder="オープンチャット、メッセージ検索">
           </div>
-        
-        <!--おすすめのグルーブ 画像のボタン-->
-        <button class="recommendation-1st">
-          <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-recommedation.svg" alt="" width="72" height="95">
-        </button>
-        <button class="recommendation-2nd">
-          <img class="mb-5" src="/docs/5.0/assets/brand/bootstrap-recommedation.svg" alt="" width="72" height="95">
-        </button>
-        <button class="recommendation-3rd">
-          <img class="mb-6" src="/docs/5.0/assets/brand/bootstrap-recommedation.svg" alt="" width="72" height="95">
-        </button>
           <div>カテゴリーから探す</div>
         <!--カテゴリー　画像のボタン--><!--srcのとこどこ指定したらいいかわからん-->
         <button type="button" onclick="buttonClicked('category1')"><img src="path/to/image.jpg" alt="映画・舞台"></button>
@@ -77,26 +67,29 @@
             <button type="button" onclick="buttonClicked('category6')"><img src="path/to/image.jpg" alt="スポーツ"></button>
             <button type="button" onclick="buttonClicked('category7')"><img src="path/to/image.jpg" alt="音楽"></button>
             <button type="button" onclick="buttonClicked('category8')"><img src="path/to/image.jpg" alt="動物・ペット"></button>
-        </div>
-        <div>おすすめトピック</div>
-        <!--トピック-->
-        <div>
-            <button class="movietopic" type="submit">映画</button>
-            <button class="24topic" type="submit">24卒</button>
-            <button class="sutudenttopic" type="submit">学生</button>
-            <button class="fortnitetopic" type="submit">フォートナイト</button>
-        </div>
-        <div>
-            <button class="lovetopic" type="submit">恋愛</button>
-            <button class="animetopic" type="submit">アニメ</button>
-            <button class="cattopic" type="submit">猫</button>
-            <button class="tirptopic" type="submit">旅行</button>
-        </div>
       </form>
+      <!--参加しているチャットを表示-->
+      --参加しているチャットを表示--
+      <?php 
+      require_once '../php/DBmanager.php';
+      $cls = new DBManager();
+      $searchArray = $cls->getGroupInfoTblByUserId($_SESSION['userid']);
+      foreach($searchArray as $row){
+        $userid = $row['user_id'];
+        $groupid = $row['group_id'];
+        $groupname = $row['group_name'];
+        echo '<form action="Chat.html" method="get">';
+          echo '<input type="hidden" name="userid" value="'.$userid.'">';
+          echo '<input type="hidden" name="groupid" value="'.$groupid.'">';
+          echo '<button type="submit">'.$groupname.'</button>';
+          echo '</form>';
+      }
+      ?>
+      
       <!--ボタン一番下のやつ-->
-      <button class="recommendation-1st" onclick="location.href='./CreateChat.html'">
-        <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="30" height="30">
-      </button>
+      <a class="recommendation-1st" href="./CreateChat.html">
+        <img class="mb-4" src="../img/newchat.jpg" alt="" width="200" height="200">
+      </a>
       <form action="Join.html" method="POST">
         <button name="groupid" value="1234567">testgroup</button>
       </form>
