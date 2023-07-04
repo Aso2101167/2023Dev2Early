@@ -70,7 +70,7 @@
         public function getGroupTblByCategoryCode($getcategorycode){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM Groups WHERE category_id = ?";
+            $sql = "SELECT * FROM Groups WHERE category_code = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getcategorycode,PDO::PARAM_STR);
 		    $ps->execute();
@@ -204,6 +204,18 @@
         
             $lastChatId = $ps->fetchColumn();
             return $lastChatId;
+        }
+
+        public function getGroupTblByKeyword($getkeyword){
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM Groups WHERE group_name LIKE ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1,'%'.$getkeyword.'%',PDO::PARAM_STR);
+            $ps->execute();
+        
+            $searchArray = $ps->fetchAll();
+            return $searchArray;
         }
     }
 ?>

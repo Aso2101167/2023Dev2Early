@@ -67,7 +67,11 @@ $sessionCheck->checkSession();?>
           <?php 
               require_once '../php/DBmanager.php';
               $cls = new DBManager();
-              $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
+              if(isset($_GET['groupid'])){
+                $searchArray = $cls->getGroupTblByGroupId($_GET['groupid']);
+              }else{
+                $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
+              }
               foreach($searchArray as $row){
                 $groupimg = $row['group_image'];
               }
@@ -76,6 +80,11 @@ $sessionCheck->checkSession();?>
             <h1 class="chatName">
               <?php
                 $groupname = "";
+                if(isset($_GET['groupid'])){
+                  $_SESSION['groupid'] = $_GET['groupid'];
+                }else{
+                  $_SESSION['groupid'] = $_POST['groupid'];
+                }
                 $_SESSION['groupid'] = $_POST['groupid'];
                 foreach($searchArray as $row){
                   $groupname = $row['group_name'];
