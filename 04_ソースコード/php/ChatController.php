@@ -4,7 +4,7 @@
   require_once 'DBmanager.php';
   $cls = new DBManager();
   $groupid = "1234567";
-      $userid = "1234567";
+      $userid = $_SESSION['userid'];
   if (!isset($_SESSION['lastChatId'])) {
     $latestChat = $cls->getLatestChatByGroupId($groupid);
     $_SESSION['lastChatId'] = $latestChat['chat_id'];
@@ -35,7 +35,7 @@
     // 最新のメッセージが存在し、IDが前回の取得時と異なる場合のみ返す
     if ($latestChat && $latestChat['chat_id'] != $lastChatId) {
         $_SESSION['lastChatId'] = $latestChat['chat_id'];
-        return json_encode(['message' => $latestChat['chat_sentence']]);
+        return json_encode(['username' => $latestChat['user_name'],'message' => $latestChat['chat_sentence']]);
     }
   }
 
@@ -45,9 +45,10 @@
     global $cls;
     global $groupid;
     global $userid;
+    $searchArray = $cls->getUserTblById($userid);
     $cls->InsertChatTbl($groupid,$userid,$msg);
     // 最新のメッセージのIDをセッションに保存
     $_SESSION['lastChatId'] = $cls->getLastChatId();
-    return json_encode(['message' => $msg]);
+    return json_encode(['username' => $searchArray['user_name'],'message' => $msg]);
   }
  ?>

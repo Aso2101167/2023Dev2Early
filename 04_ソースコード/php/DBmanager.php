@@ -12,7 +12,7 @@
         public function InsertUserTbl($getuserid,$getuserpassword,$getusername){
             $pdo = $this->dbConnect();
 
-            $sql = "INSERT INTO Users(user_id,user_password,user_name) VALUES (?,?,?)";
+            $sql = "INSERT INTO User(user_id,user_password,user_name) VALUES (?,?,?)";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getuserid,PDO::PARAM_INT);
 		    $ps->bindValue(2,$getuserpassword,PDO::PARAM_STR);
@@ -34,23 +34,32 @@
         }
 
         //グループを作成するメソッド
-        public function InsertGroupTbl($getgroupname,$getgrouptext){
+        public function InsertGroupTbl($getgroupname,$getcategorycode,$getgrouptext){
             $pdo = $this->dbConnect();
 
-            $sql = "INSERT INTO XXX(group_name,group_text) VALUES(?,?)";
+            $group_id = mt_rand(1000000, 9999999);
+
+            $sql = "INSERT INTO Groups(group_id,group_name,category_code,group_text) VALUES(?,?,?,?)";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1,$getgroupname,PDO::PARAM_STR);
-            $ps->bindValue(2,$getgrouptext,PDO::PARAM_STR);
+            $ps->bindValue(1,$group_id,PDO::PARAM_INT);
+            $ps->bindValue(2,$getgroupname,PDO::PARAM_STR);
+            $ps->bindValue(3,$getcategorycode,PDO::PARAM_STR);
+            $ps->bindValue(4,$getgrouptext,PDO::PARAM_STR);
             $ps->execute();
+
+            return $group_id;
         }
 
         //グループIDでグループ検索するメソッド
-        public function getGroupTblByGroupId(){
+        public function getGroupTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE group_id = ?";
+            $sql = "SELECT g.*, c.category_name 
+            FROM Groups g
+            INNER JOIN Category c ON g.category_code = c.category_code
+            WHERE g.group_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_STR);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
@@ -58,12 +67,12 @@
         }
 
         //カテゴリーコードでグループ検索するメソッド
-        public function getGroupTblByCategoryCode(){
+        public function getGroupTblByCategoryCode($getcategorycode){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE category_id = ?";
+            $sql = "SELECT * FROM Groups WHERE category_code = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getcategorycode,PDO::PARAM_STR);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
@@ -71,12 +80,12 @@
         }
 
         //グループ参加退出テーブルをグループIDで検索するメソッド
-        public function getGroupInfoTblByGroupId(){
+        public function getGroupInfoTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE group_id = ?";
+            $sql = "SELECT * FROM Group_info WHERE group_id = ?";
 		    $ps = $pdo->prepare($sql);
-		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_STR);
 		    $ps->execute();
 
 		    $searchArray = $ps->fetchAll();
@@ -84,10 +93,13 @@
         }
 
         //グループ参加退出テーブルをユーザーIDで検索するメソッド
-        public function  getGroupInfoTblByUserId(){
+        public function  getGroupInfoTblByUserId($getid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM User WHERE user_id = ?";
+            $sql = "SELECT Group_info.*, Groups.group_name
+            FROM Group_info
+            JOIN Groups ON Group_info.group_id = Groups.group_id
+            WHERE Group_info.user_id = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getid,PDO::PARAM_INT);
 		    $ps->execute();
@@ -99,6 +111,14 @@
         //グループ参加退出テーブルに追加するメソッド
         public function InsertGroup_infoTbl($getgroupid, $getuserid){
             $pdo = $this->dbConnect();
+
+            $sql = "INSERT INTO Group_info(group_id,user_id,join_date) VALUES (?,?,?)";
+		    $ps = $pdo->prepare($sql);
+            $dayStr = date("Y/m/d");
+		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
+		    $ps->bindValue(2,$getuserid,PDO::PARAM_INT);
+            $ps->bindValue(3,$dayStr,PDO::PARAM_STR);
+		    $ps->execute();
         }
 
         //グループ参加退出テーブルのデータを削除するメソッド
@@ -110,7 +130,10 @@
         public function getChatTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM Chat WHERE group_id = ?";
+            $sql = "SELECT Chat.*, User.user_name
+            FROM Chat
+            JOIN User ON Chat.user_id = User.user_id
+            WHERE Chat.group_id = ?";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
 		    $ps->execute();
@@ -134,6 +157,8 @@
 
         //カテゴリーを一覧表示するメソッド
         public function getCategoryTbl(){
+            $pdo = $this->dbConnect();
+
             $sql = "SELECT * FROM Category";
 		    $searchArray = $pdo->query($sql);
 		    return $searchArray;
@@ -156,7 +181,12 @@
         public function getLatestChatByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT chat_id, chat_sentence FROM Chat WHERE group_id = ? ORDER BY chat_id DESC LIMIT 1";
+            $sql = "SELECT Chat.chat_id, Chat.chat_sentence, User.user_name
+            FROM Chat
+            JOIN User ON Chat.user_id = User.user_id
+            WHERE Chat.group_id = ?
+            ORDER BY Chat.chat_id DESC
+            LIMIT 1";
 		    $ps = $pdo->prepare($sql);
 		    $ps->bindValue(1,$getgroupid,PDO::PARAM_INT);
 		    $ps->execute();
@@ -174,6 +204,18 @@
         
             $lastChatId = $ps->fetchColumn();
             return $lastChatId;
+        }
+
+        public function getGroupTblByKeyword($getkeyword){
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM Groups WHERE group_name LIKE ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1,'%'.$getkeyword.'%',PDO::PARAM_STR);
+            $ps->execute();
+        
+            $searchArray = $ps->fetchAll();
+            return $searchArray;
         }
     }
 ?>
