@@ -61,5 +61,11 @@ hr {
 }
 
 .err{
-    margin-left:200px;
+    margin-left:0px;
+}
+
+.errmsg{
+    color: red;
+    text-align: center;
+    font-size: 25px;
 }
