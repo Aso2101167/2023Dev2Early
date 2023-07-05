@@ -217,5 +217,15 @@
             $searchArray = $ps->fetchAll();
             return $searchArray;
         }
+
+        public function updateUserImage($userid, $imageFileName) {
+            $pdo = $this->dbConnect();
+
+            $sql = "UPDATE User SET user_image = ? WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $imageFileName, PDO::PARAM_STR);
+            $ps->bindValue(2, $userid, PDO::PARAM_STR);
+            $ps->execute();
+        }
     }
 ?>
