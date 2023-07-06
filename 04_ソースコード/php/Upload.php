@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // アップロードされたファイルの情報を取得
   $file = $_FILES['imageFile'];
@@ -28,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // ファイルを移動して保存
   if (move_uploaded_file($tmpFilePath, $filePath)) {
-    echo 'ファイルがアップロードされました。';
     // ここでファイルの保存先パスなどの情報をデータベースに保存するなどの処理を行うことができます。
 
     // データベースの更新処理
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dbManager = new DBManager();
     $dbManager->updateUserImage($userId, $fileName); // ユーザーIDとファイル名を渡してデータベースを更新するメソッドを呼び出す
 
-    header('Location: UserInfo.html');
+    header('Location:../html/UserInfo.html');
     exit;
   } else {
     // リダイレクト
-    header('Location: UserInfo.html?error=1');
+    header('Location:../html/UserInfo.html?error=1');
     exit;
   }
 }

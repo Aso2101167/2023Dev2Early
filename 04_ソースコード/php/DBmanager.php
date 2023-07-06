@@ -227,5 +227,16 @@
             $ps->bindValue(2, $userid, PDO::PARAM_STR);
             $ps->execute();
         }
+
+        public function updateUserName($userId, $userName) {
+            $pdo = $this->dbConnect();
+          
+            $sql = "UPDATE User SET user_name = ? WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userName, PDO::PARAM_STR);
+            $ps->bindValue(2, $userId, PDO::PARAM_STR);
+            
+            $ps->execute();
+          }
     }
 ?>
