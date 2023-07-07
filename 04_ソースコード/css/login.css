@@ -66,5 +66,11 @@ hr {
 }
 
 .err{
-    color:firebrick;
+    margin-left:0px;
+}
+
+.errmsg{
+    color: red;
+    text-align: center;
+    font-size: 25px;
 }

@@ -4,28 +4,51 @@
     $cls = new DBManager();
     $groupid = $_GET['groupid'];
     $userid = $_GET['userid'];
+    $group = $cls->getGroupTblByGroupId($groupid);
+    foreach($group as $row){
+      $groupname = $row['group_name'];
+    }
   ?>
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/chat.css">
     <title>チャットルーム</title>
   </head>
   <body>
-    <button onclick="location.href='./Top.html'">戻る</button>
+    <div class="header">
+      <!-- ハンバーガーメニューアイコン -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; margin: 20px;">
+        <button onclick="location.href='Top.html'" class="recommendation-1st" style="background-color: lightgray; border: white; margin-right: auto; font-size: 20px;">
+          ＜
+        </button>
+        <div style="position: absolute;"><h2><?php echo $groupname;?></h2></div>
+      </div>
+    </div>
+  
+    <!-- メニューのコンテンツ -->
+    <div class="menu" id="menu">
+      <a href="GroupInfo.html">チャット詳細</a>
+      <a href="Top.html">トップ画面</a>
+      <a href="Quit.html">グループから抜ける</a>
+    </div> 
     <section>
-      <h2>チャットルーム</h2>
       <div class="row">
         <div class="col-sm-offset-2 col-sm-8">
           <?php
             $searchArray = $cls->getChatTblByGroupId($groupid);
             foreach($searchArray as $row){
               if($row['user_id'] == $userid){
-                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div>";
+                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'><div class='chat-message'><img src='../img/".$row['user_image']."' class='avatar'><div class='message-content'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div></div></div>";
               }else{
-                echo "<div class='col-sm-8 alert alert-warning'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div>";
+                echo "<div class='col-sm-8 alert alert-warning'><div class='chat-message'><img src='../img/".$row['user_image']."' class='avatar'><div class='message-content'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div></div></div>";
               }
             }
             $latestChat = $cls->getLatestChatByGroupId($groupid);
@@ -33,7 +56,10 @@
           ?>
           <div class="form-group">
             <div class="messages"></div>
+            <div class="input-area">
             <input type="text" id="message" class="form-control" placeholder="メッセージを入力" name="" value="">
+            <button>▶</button>
+        </div>
           </div>
         </div>
       </div>
@@ -45,6 +71,13 @@
     <script type="text/javascript" src="../javascript/ChatController.js"></script>
     <script type="text/javascript">
       Main.init();
+    </script>
+    <script>
+      // メニューの表示・非表示を切り替える関数
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        menu.style.display = (menu.style.display === "block") ? "none" : "block";
+      }
     </script>
   </body>
 </html>

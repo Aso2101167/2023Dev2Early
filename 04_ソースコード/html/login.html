@@ -55,14 +55,11 @@
       <button class="Button" type="submit">Log in</button>
       </div>
       <?php 
-      if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "idError"){
-        echo "<div class="form^floating"><h3 class="err">IDが違います。</h3></div>";
-        $_SESSION['loginError'] = "";
-      }else if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "passError"){
-        echo "<div class="form^floating"><h3 class="err">パスワードが違います。</h3></div>";
-        $_SESSION['loginError'] = "";
-      }
-      ?>
+    if(isset($_SESSION['loginError'])){
+      echo '<div class="errmsg"><h3 class="err">'.$_SESSION['loginError'].'</h3></div>';
+      $_SESSION['loginError'] = "";
+    }
+    ?>
       <hr>
 
       <h1 class="login">新規登録</h1>
@@ -71,7 +68,6 @@
           <button class="Button" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
         </div>
       </div>
-    </div>
   </form>
 </main>
 

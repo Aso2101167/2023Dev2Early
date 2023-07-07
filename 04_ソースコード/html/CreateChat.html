@@ -10,6 +10,7 @@ $sessionCheck->checkSession();
         <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <meta name="description" content="">
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Hugo 0.84.0">
@@ -50,39 +51,42 @@ $sessionCheck->checkSession();
     
         
         <!-- Custom styles for this template -->
-        <link href="signin.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
       </head>
       <body class="text-center">
         
     <main class="form-signin">
-      <form id="createChatForm" action="../php/CreateChat.php" method="post">
-        <div>
-            <!--戻るボタン-->
-        <button class="recommendation-1st">
-            <img class="return" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
-          </button>
-            オープンチャット作成
-        </div>
+      <div style="display: flex; align-items: center; justify-content: center; margin: 20px;">
+        <button onclick="location.href='Top.html'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px;">
+          ＜
+        </button>
+        <div style="position: absolute;"><h2>オープンチャット作成</h2></div>
+      </div>
+        
+        <form id="createChatForm" action="../php/CreateChat.php" method="post"></form>
         <div>
             <p>オープンチャット名</p>
             <input type="search" class="form-chat" id="openchatname" placeholder="オープンチャット名を入力"name="chatname">
 
             <p>詳細</p>
-            <textarea class="form-detail" id="detail" placeholder="詳細を入力"name="detail"></textarea>
+            <textarea class="form-detail" id="detail" placeholder="詳細を入力"name="detail" style="height: 100px;
+            width: 80%;"></textarea>
         </div>
-        <div>
             <p>カテゴリー</p>
+            <div class="row">
             <?php 
             session_start();
             require_once '../php/DBmanager.php';
             $cls = new DBManager();
             $selectArray = $cls->getCategoryTbl();
+            $count = 0;
             foreach($selectArray as $row){
-              echo '<input type="radio" value="'.$row['category_code'].'" name="category"><img src="path/to/image.jpg" alt="'.$row['category_name'].'"></button>';
+              echo '<div class="col-6 col-sm-4"><input type="radio" value="'.$row['category_code'].'" name="category"><img style="width: 50px; height: 50px;" src="../img/'.$row['category_code'].'.png" alt="'.$row['category_name'].'">'.$row['category_name'].'</div>';
             }
             ?>
-        <div>
-            <input class="w-100 btn btn-lg btn-primary" type="submit" name="createchat" value="create chat">
+          </div>
+        <div style="margin-top: 20px;">
+            <input class="w-50 btn btn-lg btn-primary" type="submit" name="createchat" value="create chat">
         </div>
       </form>
     </main>
@@ -91,6 +95,6 @@ $sessionCheck->checkSession();
     
         
       
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
     </html>

@@ -130,7 +130,7 @@
         public function getChatTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT Chat.*, User.user_name
+            $sql = "SELECT Chat.*, User.user_name, User.user_image
             FROM Chat
             JOIN User ON Chat.user_id = User.user_id
             WHERE Chat.group_id = ?";
@@ -181,7 +181,7 @@
         public function getLatestChatByGroupId($getgroupid){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT Chat.chat_id, Chat.chat_sentence, User.user_name
+            $sql = "SELECT Chat.chat_id, Chat.chat_sentence, User.user_name,User.user_image
             FROM Chat
             JOIN User ON Chat.user_id = User.user_id
             WHERE Chat.group_id = ?
@@ -216,6 +216,38 @@
         
             $searchArray = $ps->fetchAll();
             return $searchArray;
+        }
+
+        public function updateUserImage($userid, $imageFileName) {
+            $pdo = $this->dbConnect();
+
+            $sql = "UPDATE User SET user_image = ? WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $imageFileName, PDO::PARAM_STR);
+            $ps->bindValue(2, $userid, PDO::PARAM_STR);
+            $ps->execute();
+        }
+
+        public function updateUserName($userId, $userName) {
+            $pdo = $this->dbConnect();
+          
+            $sql = "UPDATE User SET user_name = ? WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userName, PDO::PARAM_STR);
+            $ps->bindValue(2, $userId, PDO::PARAM_STR);
+            
+            $ps->execute();
+        }
+
+        public function deleteGroupMember($groupId, $userId) {
+            $pdo = $this->dbConnect();
+          
+            $sql = "DELETE FROM Group_info WHERE group_id = ? AND user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $groupId, PDO::PARAM_STR);
+            $ps->bindValue(2, $userId, PDO::PARAM_STR);
+          
+            $ps->execute();
         }
     }
 ?>

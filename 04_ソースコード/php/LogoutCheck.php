@@ -2,11 +2,13 @@
 session_start();
 require_once 'DBmanager.php';
 $cls = new DBManager();
-if($POST_('logout')){
+if(isset($_POST['logout'])){
+  //logout処理
+  session_destroy();
     header('Location:../html/LogoutComplete.html');
       exit;
-}else if($POST_('cancel')){
-    header('Location:../html/Chat.html');
+}else if(isset($_POST['cancel'])){
+    header('Location:../html/Top.html');
       exit;
 }
 ?>
