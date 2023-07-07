@@ -17,20 +17,20 @@ body{
 	height: 70px;
 }
 
-.login{
+.info{
     text-align:center;
-}
-
-.form-floating{
-    text-align:center;
-    display: block;
-    margin-bottom: 10px;
-    font-size: .9em;
+    font-size: 20px;
 }
 
 .mid{
     padding-left:30%;
     padding-right:30%;
+}
+
+.form-floating{
+    display: block;
+    margin-bottom: 10px;
+    font-size: .9em;
 }
 
 .form-control{
@@ -45,7 +45,16 @@ body{
     font-size:25px;
 }
 
-.Button{
+.txt{
+    font-family: ãƒ¡ã‚¤ãƒªã‚ª;
+    font-size: 20px;
+}
+
+.CA{
+    text-align:center;
+}
+
+.button{
     width: 100%;
     padding: 8px 10px;
     border: 1px solid #FFA0C2;
@@ -57,14 +66,4 @@ body{
 	padding-top:10px;
     padding-bottom:10px;
     font-size:25px;
-}
-
-hr {
-    width: 80%;
-    border: none;
-    border-top: 2px dotted black;
-}
-
-.err{
-    color:firebrick;
 }

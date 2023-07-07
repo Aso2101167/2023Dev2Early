@@ -44,29 +44,33 @@
     </div>
       <h1 class="login">ログイン</h1>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="user id"name="userid">
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password"name="password">
-    </div>
-    <div class="form-floating">
-    <button class="Button" type="submit">Log in</button>
-    </div>
-    <?php 
-    if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "idError"){
-      echo "<div class="form^floating"><h3 class="err">IDが違います。</h3></div>";
-      $_SESSION['loginError'] = "";
-    }else if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "passError"){
-      echo "<div class="form^floating"><h3 class="err">パスワードが違います。</h3></div>";
-      $_SESSION['loginError'] = "";
-    }
-    ?>
-    <hr>
+    <div class="mid">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="user id"name="userid">
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"name="password">
+      </div>
+      <div class="form-floating">
+      <button class="Button" type="submit">Log in</button>
+      </div>
+      <?php 
+      if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "idError"){
+        echo "<div class="form^floating"><h3 class="err">IDが違います。</h3></div>";
+        $_SESSION['loginError'] = "";
+      }else if(isset($_SESSION['loginError']) && $_SESSION['loginError'] === "passError"){
+        echo "<div class="form^floating"><h3 class="err">パスワードが違います。</h3></div>";
+        $_SESSION['loginError'] = "";
+      }
+      ?>
+      <hr>
 
-    <h1 class="login">新規登録</h1>
-    <div class="form-floating">
-      <button class="Button" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
+      <h1 class="login">新規登録</h1>
+      <div class="mid">
+        <div class="form-floating">
+          <button class="Button" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
+        </div>
+      </div>
     </div>
   </form>
 </main>
