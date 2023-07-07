@@ -47,49 +47,14 @@
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
 
     <meta name="theme-color" content="#7952b3">
+        <style type="text/css">
 
-    
-
-    
-
-        <style>
-
-          .bd-placeholder-img {
-
-            font-size: 1.125rem;
-
-            text-anchor: middle;
-
-            -webkit-user-select: none;
-
-            -moz-user-select: none;
-
-            user-select: none;
-
-          }
-
-    
-
-          @media (min-width: 768px) {
-
-            .bd-placeholder-img-lg {
-
-              font-size: 3.5rem;
-
-            }
-
-          }
 
         </style>
-
     
-
         
-
         <!-- Custom styles for this template -->
-
-        <link href="signin.css" rel="stylesheet">
-
+        <link href="./../css/logout.css" rel="stylesheet" type="text/css">
       </head>
 
       <body class="text-center">
@@ -99,22 +64,22 @@
     <main class="form-signin">
 
       <form action="../php/LogoutCheck.php" method="POST">
-
-        <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-
-        <h1 class="h3 mb-3 fw-normal">ログアウトしますか？</h1>
-
-
+        <div id="imgdiv">
+        <img class="mb-4" src="./../img/logo.png" alt="" width="72" height="57">
+          </div>
+        <h1 class="logouttext">ログアウトしますか？</h1>
 
 
-    <div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit" name="logout" value="logout">Log out...▶️</button>
+
+    <div class="form-floating">
+
+        <button class="Button" type="submit">Log out ▶️</button>
 
     </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit" name="cancel" value="cancel">Cancel   ▶️</button>
-
+    <div  class="form-cancel">
+        <button class="Button" type="submit">Cancel ▶️</button>
+      </div>
       </form>
 
     </main>
