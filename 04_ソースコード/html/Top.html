@@ -56,7 +56,7 @@ $sessionCheck->checkSession();?>
       <body class="text-center">
         <nav class="navbar navbar-dark bg-dark mb-4" aria-label="First navbar example">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img class="logoimg" src="image/logo_touka2.png"></a>
+            <img class="mb-4" src="./../img/logo.png" alt="" width="72" height="57">
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -80,7 +80,6 @@ $sessionCheck->checkSession();?>
     <main class="form-signin">
       <form action="" method="POST">
         <!--ロゴ画像-->
-        <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 
         <!--検索ボックス-->
         <div class="row">
@@ -103,19 +102,21 @@ $sessionCheck->checkSession();?>
             }
             ?>
       </form>
+      <div class="row">
       <?php 
         if(isset($_POST['category'])){
           $group = $cls->getGroupTblByCategoryCode($_POST['category']);
           foreach($group as $row){
-            echo '<div class="col-sm-8">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/'.$row['group_image'].'" alt="グループ画像"></a></div>';
+            echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/'.$row['group_image'].'" alt="グループ画像"></a></div>';
           }
         }else if(isset($_POST['key'])){
           $group = $cls->getGroupTblByKeyword($_POST['key']);
           foreach($group as $row){
-            echo '<div class="col-sm-8">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/'.$row['group_image'].'" alt="グループ画像"></a></div>';
+            echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/'.$row['group_image'].'" alt="グループ画像"></a></div>';
           }
         }
       ?>
+    </div>
       <!--参加しているチャットを表示-->
       <br>
       --参加しているチャットを表示--
@@ -140,7 +141,7 @@ $sessionCheck->checkSession();?>
       
       <!--ボタン一番下のやつ-->
       <a class="recommendation-1st" href="./CreateChat.html">
-        <img class="mb-4" src="../img/newchat.jpg" alt="" width="200" height="200">
+        <img class="mb-4" src="../img/newchat.png" alt="" style="width:20vh; height:20vh;">
       </a>
     </main>
     

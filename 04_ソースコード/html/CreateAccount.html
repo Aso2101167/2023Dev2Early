@@ -50,31 +50,35 @@ $sessionCheck->checkSession();
     
         
         <!-- Custom styles for this template -->
-        <link href="signin.css" rel="stylesheet">
+        <link href="./../css/CreateAccount.css" rel="stylesheet" type="text/css">
       </head>
       <body class="text-center">
         
     <main class="form-signin">
       <form action="../php/CreateAccount.php" method="post">
-        <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">会員情報登録</h1>
-        <p>以下のフォームに必要事項をご入力ください。</p>
-    
-
-        <div class="form-floating">
-          <p>User name</p>
-          <input type="text" class="form-control" id="floatingName" placeholder="ユーザーネームを入力してください" name="username">
+        <div id="imgdiv">
+          <img class="mb-4" src="./../img/logo.png" alt="" width="72" height="57">
         </div>
-        <div class="form-floating">
-          <p>User ID</p>
-          <input type="text" class="form-control" id="floatingID" placeholder="IDを入力してください" name="userid">
+        <h1 class="CA">会員情報登録</h1>
+        <p class="info">以下のフォームに必要事項をご入力ください。</p>
+        
+        <div class="mid">
+          <div class="form-floating">
+            <p class="txt">User name</p>
+            <input type="text" class="form-control" id="floatingName" placeholder="ユーザーネームを入力してください" name="username">
+          </div>
+          <div class="form-floating">
+            <p class="txt">User ID</p>
+            <input type="text" class="form-control" id="floatingID" placeholder="IDを入力してください" name="userid">
+          </div>
+          <div class="form-floating">
+            <p class="txt">Password</p>
+            <input type="password" class="form-control" id="floatingPassword" placeholder="パスワードを入力してください" name="password">
+          </div>
+          <div class="form-floating">
+            <input class="button" type="submit" name="create" value="create account">
+          </div>
         </div>
-        <div class="form-floating">
-          <p>Password</p>
-          <input type="password" class="form-control" id="floatingPassword" placeholder="パスワードを入力してください" name="password">
-        </div>
-        <input class="w-100 btn btn-lg btn-primary" type="submit" name="create" value="create account">
-    
         
     
       </form>

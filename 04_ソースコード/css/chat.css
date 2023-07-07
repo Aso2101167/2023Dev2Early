@@ -1,0 +1,114 @@
+.chat-message {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .message-content {
+    flex: 1;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .chat-sentence {
+    margin: 0;
+  }
+
+  body {
+    margin: 0; /* 本文全体のマージンをリセット */
+    padding-bottom: 50px; /* 入力エリアの高さ分だけ下部にパディングを追加 */
+  }
+    .input-area {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #f2f2f2;
+    }
+  
+    .input-area input[type="text"] {
+      flex: 1;
+      height: 30px;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  
+    .input-area button {
+      margin-left: 10px;
+      padding: 8px 15px;
+      background-color: #4285f4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .header {
+        background-color: lightgray;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+  
+      .hamburger {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        z-index: 1;
+      }
+      
+      .hamburger span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: #333;
+        margin-bottom: 5px;
+      }
+      
+      .hamburger span:last-child {
+        margin-bottom: 0;
+      }
+      
+      .menu {
+        display: none; /* デフォルトでは非表示 */
+        background-color: #f1f1f1;
+        padding: 20px;
+      }
+  
+      /* メディアクエリを使用して、スマートフォンサイズで表示されるメニューのスタイルを調整 */
+      @media only screen and (max-width: 768px) {
+        .hamburger {
+          display: block; /* スマートフォンサイズで表示 */
+        }
+  
+        .menu {
+          position: absolute;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          z-index: 1;
+        }
+  
+        .menu a {
+          display: block;
+          padding: 10px;
+          color: #333;
+          text-decoration: none;
+        }
+      }

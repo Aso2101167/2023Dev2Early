@@ -44,27 +44,30 @@
     </div>
       <h1 class="login">ログイン</h1>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="user id"name="userid">
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password"name="password">
-    </div>
-    <div class="form-floating">
-    <button class="Button" type="submit">Log in</button>
-    </div>
-    <?php 
+    <div class="mid">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="user id"name="userid">
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"name="password">
+      </div>
+      <div class="form-floating">
+      <button class="Button" type="submit">Log in</button>
+      </div>
+      <?php 
     if(isset($_SESSION['loginError'])){
       echo '<div class="errmsg"><h3 class="err">'.$_SESSION['loginError'].'</h3></div>';
       $_SESSION['loginError'] = "";
     }
     ?>
-    <hr>
+      <hr>
 
-    <h1 class="login">新規登録</h1>
-    <div class="form-floating">
-      <button class="button" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
-    </div>
+      <h1 class="login">新規登録</h1>
+      <div class="mid">
+        <div class="form-floating">
+          <button class="Button" type="button" onclick="location.href='./CreateAccount.html'">Sign up</button>
+        </div>
+      </div>
   </form>
 </main>
 
