@@ -8,6 +8,12 @@ $sessionCheck->checkSession();
 require_once '../php/DBmanager.php';
           $cls = new DBManager();
           $searchArray = $cls->getGroupTblByGroupId($_GET['groupid']);
+          foreach($searchArray as $row){
+            $group_name = $row['group_name'];
+            $group_text = $row['group_text'];
+            $group_image = $row['group_image'];
+          }
+
 ?>
 <DOCTYPE html>
     <html lang="en">
@@ -64,16 +70,12 @@ require_once '../php/DBmanager.php';
             <button class="recommendation-1st">
                 <img class="return" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
               </button>
-              <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+              <img class="mb-4" src="../img/<?php echo $group_image;?>" alt="" width="72" height="57">
         </div>
-        <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <button class="recommendation-1st">
-            <img class="return" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
-          </button>
-        <p class="h3 mb-3 fw-normal">グループ名</p>
+        <p class="h3 mb-3 fw-normal"><?php echo $group_name;?></p>
         <p>メンバー 〇〇〇</p>
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="説明文">
+          <textarea class="form-control" id="floatingInput" placeholder="<?php echo $group_text; ?>"></textarea>
         </div>
       </form>
     </main>
