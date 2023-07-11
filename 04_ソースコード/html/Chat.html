@@ -4,6 +4,7 @@
     $cls = new DBManager();
     $groupid = $_GET['groupid'];
     $userid = $_GET['userid'];
+    $_SESSION['groupid'] = $groupid;
     $group = $cls->getGroupTblByGroupId($groupid);
     foreach($group as $row){
       $groupname = $row['group_name'];
@@ -35,7 +36,7 @@
   
     <!-- メニューのコンテンツ -->
     <div class="menu" id="menu">
-      <a href="GroupInfo.html">チャット詳細</a>
+      <a href="GroupInfo.html?groupid=<?php echo $groupid;?>">チャット詳細</a>
       <a href="Top.html">トップ画面</a>
       <a href="Quit.html">グループから抜ける</a>
     </div> 

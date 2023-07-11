@@ -249,5 +249,37 @@
           
             $ps->execute();
         }
+
+        public function updateGroupImage($groupid, $imageFileName) {
+            $pdo = $this->dbConnect();
+
+            $sql = "UPDATE Groups SET group_image = ? WHERE group_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $imageFileName, PDO::PARAM_STR);
+            $ps->bindValue(2, $groupid, PDO::PARAM_STR);
+            $ps->execute();
+        }
+
+        public function updateGroupName($groupId, $groupName) {
+            $pdo = $this->dbConnect();
+          
+            $sql = "UPDATE Groups SET group_name = ? WHERE group_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $groupName, PDO::PARAM_STR);
+            $ps->bindValue(2, $groupId, PDO::PARAM_STR);
+            
+            $ps->execute();
+        }
+
+        public function updateGroupText($groupId, $groupText) {
+            $pdo = $this->dbConnect();
+          
+            $sql = "UPDATE Groups SET group_text = ? WHERE group_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $groupText, PDO::PARAM_STR);
+            $ps->bindValue(2, $groupId, PDO::PARAM_STR);
+            
+            $ps->execute();
+        }
     }
 ?>
