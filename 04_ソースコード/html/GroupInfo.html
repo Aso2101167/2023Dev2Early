@@ -72,10 +72,20 @@ require_once '../php/DBmanager.php';
               </button>
               <img class="mb-4" src="../img/<?php echo $group_image;?>" alt="" width="72" height="57">
         </div>
-        <p class="h3 mb-3 fw-normal"><?php echo $group_name;?></p>
-        <p>メンバー 〇〇〇</p>
+        <p class="h3 mb-3 fw-normal"><?php echo '<input type="text" name="changename" placeholder="'.$group_name.'">';?></p><input type="submit" name="changeGroupName" value="チャット名変更">
+        <p>メンバー 
+          <?php 
+          $groupinfo = $cls->getGroupInfoTblByGroupId($_GET['groupid']);
+          foreach($groupinfo as $row){
+            $user = $cls->getUserTblById($row['user_id']);
+            foreach($user as $row2){
+              echo '<li>'.$row2['user_name'].'</li>';
+            }
+          }?>
+        </p>
         <div class="form-floating">
           <textarea class="form-control" id="floatingInput" placeholder="<?php echo $group_text; ?>"></textarea>
         </div>
+        <input type="submit" name="changeGroupText" value="説明文変更">
       </form>
     </main>
