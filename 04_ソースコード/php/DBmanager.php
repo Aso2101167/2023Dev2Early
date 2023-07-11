@@ -122,10 +122,16 @@
         }
 
         //グループ参加退出テーブルのデータを削除するメソッド
-        public function  deleteGroup_infoTbl(){
+        public function  deleteGroupTbl($getgroupid){
             $pdo = $this->dbConnect();
+            // 削除クエリの準備
+            $sql = "DELETE FROM Groups WHERE group_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $groupId, PDO::PARAM_STR);
+    
+            // 削除クエリの実行
+            $ps->execute();
         }
-
         //チャットテーブルをグループIDで検索し表示するメソッド
         public function getChatTblByGroupId($getgroupid){
             $pdo = $this->dbConnect();

@@ -1,3 +1,22 @@
+<?php session_start();
+require_once '../php/SessionCheck.php';
+
+// セッションチェックを行う
+$sessionCheck = new SessionCheck();
+$sessionCheck->checkSession();
+$groupid = $_GET['groupid'];
+?>
+<DOCTYPE html>
+  <html lang="en">
+      <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+      <meta name="generator" content="Hugo 0.84.0">
+      <title>Signin Template · Bootstrap v5.0</title>
+  
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Favicons -->
@@ -21,28 +40,60 @@
     
     <div>
         <!--戻るボタン-->
-        <button class="recommendation-1st">
-            <img class="return" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
-          </button>
-          <div class="text">
-          <h1>退会</h1>
-          </div>
-    </div>
-
-<main class="form-signin">
-  <form>
-    <div class="chatname">
-      チャット名
-    </div>
-    <div class="member">
-      ◯人
-    </div>
-    <div class="button">
-        <button class="button" type="submit"> <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="30">カテゴリー</button>
-    </div>  
+        <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: lightgray; border: white; margin-right: auto; font-size: 20px;">
+          ＜
+        </button>
     <div class="text">
-      参加チャットの説明書き（文字数80）
+      <?php 
+          require_once '../php/DBmanager.php';
+          $cls = new DBManager();
+          if(isset($_GET['groupid'])){
+            $searchArray = $cls->getGroupTblByGroupId($_GET['groupid']);
+          }else{
+            $searchArray = $cls->getGroupTblByGroupId($_POST['groupid']);
+          }
+          foreach($searchArray as $row){
+            $groupimg = $row['group_image'];
+          }
+      ?>
+      <img class="Chatimg" src="../img/<?php echo $groupimg; ?>" alt="チャット画像">
+        <h1 class="chatName">
+          <?php
+            $groupname = "";
+            if(isset($_GET['groupid'])){
+              $_SESSION['groupid'] = $_GET['groupid'];
+            }else{
+              $_SESSION['groupid'] = $_POST['groupid'];
+            }
+            $_SESSION['groupid'] = $_POST['groupid'];
+            foreach($searchArray as $row){
+              $groupname = $row['group_name'];
+            }
+            echo $groupname;
+          ?></h1>
+        <p class="member">参加人数：
+          <?php
+        $num = $cls->getGroupInfoTblByGroupId($_GET['groupid']);
+        $cnt=0;
+        foreach($num as $row){
+          $cnt=$cnt+1;
+        }
+        echo $cnt;
+        ?>人
+        </p>
+        
     </div>
+    <div class="text">
+        <p class="tag">カテゴリー：<?php foreach($searchArray as $row){
+          echo $row['category_name'];
+        }?></p>
+        <p>グループ説明文：
+          <?php foreach($searchArray as $row){
+            echo $row['group_text'];
+          }?>
+        </p>
+    </div>
+    <form action="../php/Quit.php?$groupid=<?php echo $_GET['groupid'];?>" method="post">
     <div class="form-floating">
         <button class="Button-1" type="submit">QUIT</output></button>
     </div>
@@ -50,3 +101,5 @@
     
   </form>
 </main>
+  </body>
+  </html>
