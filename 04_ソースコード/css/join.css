@@ -1,0 +1,36 @@
+.text{
+    text-align:center;
+}
+
+.img{
+    text-align:center;
+}
+
+.num{
+    text-align:center;
+}
+
+.text-tag{
+    text-align:center;
+}
+
+.Button{
+    width: 400px;
+    padding: 8px 10px;
+    border: 1px solid #FFA0C2;
+	color: #FFFFFF;
+	background-color: #FFA0C2;
+    border-radius: 3px;
+    font-size: 1em;
+    line-height: 1.5;
+	padding-top:10px;
+    padding-bottom:10px;
+    font-size:25px;
+}
+
+.form-floating{
+    text-align:center;
+    display: block;
+    margin-bottom: 10px;
+    font-size: .9em;
+}
