@@ -7,6 +7,8 @@ $sessionCheck = new SessionCheck();
 $sessionCheck->checkSession();
 require_once '../php/DBmanager.php';
           $cls = new DBManager();
+          $_SESSION['groupid'] = $_GET['groupid'];
+          $groupid = $_GET['groupid'];
           $searchArray = $cls->getGroupTblByGroupId($_GET['groupid']);
           foreach($searchArray as $row){
             $group_name = $row['group_name'];
@@ -65,12 +67,16 @@ require_once '../php/DBmanager.php';
       <body class="text-center">
         
     <main class="form-signin">
-      <form>
+      <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: lightgray; border: white; margin-right: auto; font-size: 20px;">
+        ＜
+      </button>
         <div>
-            <button class="recommendation-1st">
-                <img class="return" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
-              </button>
               <img class="mb-4" src="../img/<?php echo $group_image;?>" alt="" width="72" height="57">
+              <form action="../php/Upload.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="imageGroupFile">
+                <button type="submit">アップロード</button>
+              </form>
+              <form action="../php/GroupInfo.php" method="POST">
         </div>
         <p class="h3 mb-3 fw-normal"><?php echo '<input type="text" name="changename" placeholder="'.$group_name.'">';?></p><input type="submit" name="changeGroupName" value="チャット名変更">
         <p>メンバー 
@@ -84,7 +90,7 @@ require_once '../php/DBmanager.php';
           }?>
         </p>
         <div class="form-floating">
-          <textarea class="form-control" id="floatingInput" placeholder="<?php echo $group_text; ?>"></textarea>
+          <textarea class="form-control" id="floatingInput" name="changetext" placeholder="<?php echo $group_text; ?>"></textarea>
         </div>
         <input type="submit" name="changeGroupText" value="説明文変更">
       </form>
