@@ -81,7 +81,7 @@ $sessionCheck->checkSession();?>
               ?></h1>
             <p class="num">参加人数：
               <?php
-            $num = $cls->getGroupInfoTblByGroupId($_POST['groupid']);
+            $num = $cls->getGroupInfoTblByGroupId($_GET['groupid']);
             $cnt=0;
             foreach($num as $row){
               $cnt+=1;
