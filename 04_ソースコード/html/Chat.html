@@ -38,7 +38,7 @@
     <div class="menu" id="menu">
       <a href="GroupInfo.html?groupid=<?php echo $groupid;?>">チャット詳細</a>
       <a href="Top.html">トップ画面</a>
-      <a href="Quit.html">グループから抜ける</a>
+      <a href="Quit.html?groupid=<?php echo $groupid;?>">グループから抜ける</a>
     </div> 
     <section>
       <div class="row">
@@ -71,6 +71,7 @@
     <script type="text/javascript" src="../javascript/Main.js"></script>
     <script type="text/javascript" src="../javascript/ChatController.js"></script>
     <script type="text/javascript">
+      var groupId = "<?php echo $groupid; ?>";
       Main.init();
     </script>
     <script>
