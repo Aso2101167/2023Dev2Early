@@ -57,26 +57,14 @@ require_once '../php/DBmanager.php';
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#7952b3">
     
+    <style type="text/css">
+
+
+    </style>
+
     
-        <style>
-          .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-          }
-    
-          @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-              font-size: 3.5rem;
-            }
-          }
-        </style>
-    
-        
-        <!-- Custom styles for this template -->
-        <link href="signin.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./../css/userinfo.css" rel="stylesheet" type="text/css">
       </head>
       <body class="text-center" style="text-align: center;">
         
@@ -87,7 +75,7 @@ require_once '../php/DBmanager.php';
             <img class="return" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
           </button>
         </form>
-        <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <img class="openchat" src="./../img/logo.png" alt="" width="72" height="57">
         </div>
         <div style="width: 40%; max-width: 40%;margin: 0 auto;">
             <!--mypage-->
@@ -113,8 +101,10 @@ require_once '../php/DBmanager.php';
           }
           ?>
           <form action="UserInfo.html" method="POST">
-            <input type="textbox" class="name" id="namebox" name="username" placeholder="<?php echo $username;?>">
-            <input type="submit" name="namechange" value="変更">
+            <div class="form-floating">
+              <input type="textbox" class="textbox-info" id="namebox" name="username" placeholder="<?php echo $username;?>">
+              <input type="submit" name="namechange" value="変更" class="change">
+            </div>
           </form>
           <?php
           if (isset($_POST['namechange'])&&empty($_POST['username'])) {
