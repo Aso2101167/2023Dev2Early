@@ -2,3 +2,13 @@ body{
     text-align: center;
 }
 
+button{
+        border: 2px solid #ffd6d6;
+        border-radius: 10px;
+        background: #FFA0C2;
+}
+
+button:hover {
+    color: #fff;
+    background: #ffc1d6;
+  }

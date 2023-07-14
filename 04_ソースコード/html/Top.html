@@ -51,12 +51,12 @@ $sessionCheck->checkSession();?>
     
         
         <!-- Custom styles for this template -->
-        <link href="signin.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
       </head>
       <body class="text-center">
-        <nav class="navbar navbar-dark bg-dark mb-4" aria-label="First navbar example">
+        <nav class="navbar navbar-light mb-4" aria-label="First navbar example">
           <div class="container-fluid">
-            <img class="mb-4" src="./../img/logo.png" alt="" width="72" height="57">
+            <img class="" src="./../img/logo.png" alt="" width="72" height="57" style="width: auto; margin: auto;">
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -85,7 +85,7 @@ $sessionCheck->checkSession();?>
         <div class="row">
           <div class="text-center">
         <div class="container">
-            <input type="text" style="height: 40px; width: 70%;" placeholder="チャット名検索" name="key">
+            <input type="text" style="height: 40px; width: 70%; border-radius: 10px;" placeholder="チャット名検索" name="key">
             <button type="submit">検索</button>
           </div>
           </div>
@@ -141,7 +141,9 @@ $sessionCheck->checkSession();?>
       
       <!--ボタン一番下のやつ-->
       <a class="recommendation-1st" href="./CreateChat.html">
-        <img class="mb-4" src="../img/newchat.png" alt="" style="width:20vh; height:20vh;">
+        <img class="mb-4" src="../img/newchat.png" alt="" style="width:20vh; height:20vh;position: fixed;
+        bottom: 0px;
+        right: 10px;">
       </a>
     </main>
     

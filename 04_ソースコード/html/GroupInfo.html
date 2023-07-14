@@ -62,16 +62,20 @@ require_once '../php/DBmanager.php';
     
         
         <!-- Custom styles for this template -->
-        <link href="signin.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
       </head>
-      <body class="text-center">
+      <body class="text-center" style="text-align: center;">
         
     <main class="form-signin">
-      <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: lightgray; border: white; margin-right: auto; font-size: 20px;">
+      <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px; display: flex;">
         ＜
       </button>
         <div>
-              <img class="mb-4" src="../img/<?php echo $group_image;?>" alt="" width="72" height="57">
+          <div style="width: 40%; max-width: 40%;margin: 0 auto;">
+            <!--mypage-->
+            <div style="width: 100%; padding-bottom: 100%; position: relative; overflow: hidden; border-radius: 50%;">
+              <img class="mb-4" src="../img/<?php echo $group_image;?>" alt="" width="72" height="57" style="width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); object-fit: cover;">
+            </div></div>
               <form action="../php/Upload.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="imageGroupFile">
                 <button type="submit">アップロード</button>
@@ -90,7 +94,7 @@ require_once '../php/DBmanager.php';
           }?>
         </p>
         <div class="form-floating">
-          <textarea class="form-control" id="floatingInput" name="changetext" placeholder="<?php echo $group_text; ?>"></textarea>
+          <textarea class="form-control" style="width: 50%; height: 30%;" id="floatingInput" name="changetext" placeholder="<?php echo $group_text; ?>"></textarea>
         </div>
         <input type="submit" name="changeGroupText" value="説明文変更">
       </form>
