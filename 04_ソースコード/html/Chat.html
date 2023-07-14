@@ -14,6 +14,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/chat.css">
     <title>チャットルーム</title>
@@ -35,7 +36,7 @@
     </div>
   
     <!-- メニューのコンテンツ -->
-    <div class="menu" id="menu" style="margin-bottom: 10px;">
+    <div class="menu" id="menu" style="margin-bottom: 10px; position: inherit;">
       <a href="GroupInfo.html?groupid=<?php echo $groupid;?>">チャット詳細</a>
       <a href="Top.html">トップ画面</a>
       <a href="Quit.html?groupid=<?php echo $groupid;?>">グループから抜ける</a>
@@ -47,9 +48,9 @@
             $searchArray = $cls->getChatTblByGroupId($groupid);
             foreach($searchArray as $row){
               if($row['user_id'] == $userid){
-                echo "<div class='col-sm-offset-4 col-sm-8 alert alert-success'><div class='chat-message'><img src='../img/".$row['user_image']."' class='avatar'><div class='message-content'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div></div></div>";
+                echo "<div class='col-sm-offset-4 col-sm-8 col-xs-offset-2 col-xs-10 alert alert-success'><div class='chat-message'><img src='../img/".$row['user_image']."' class='avatar'><div class='message-content'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div></div></div>";
               }else{
-                echo "<div class='col-sm-8 alert alert-warning'><div class='chat-message'><img src='../img/".$row['user_image']."' class='avatar'><div class='message-content'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div></div></div>";
+                echo "<div class='col-sm-8 col-xs-10 alert alert-warning'><div class='chat-message'><img src='../img/".$row['user_image']."' class='avatar'><div class='message-content'>".$row['user_name']."<p>".$row['chat_sentence']."</p></div></div></div>";
               }
             }
             $latestChat = $cls->getLatestChatByGroupId($groupid);

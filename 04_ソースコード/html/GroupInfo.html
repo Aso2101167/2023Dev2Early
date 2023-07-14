@@ -7,6 +7,7 @@ $sessionCheck = new SessionCheck();
 $sessionCheck->checkSession();
 require_once '../php/DBmanager.php';
           $cls = new DBManager();
+          $userid = $_SESSION['userid'];
           $_SESSION['groupid'] = $_GET['groupid'];
           $groupid = $_GET['groupid'];
           $searchArray = $cls->getGroupTblByGroupId($_GET['groupid']);
@@ -67,7 +68,7 @@ require_once '../php/DBmanager.php';
       <body class="text-center" style="text-align: center;">
         
     <main class="form-signin">
-      <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px; display: flex;">
+      <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>&userid=<?php echo $userid;?>'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px; display: flex;">
         ＜
       </button>
         <div>

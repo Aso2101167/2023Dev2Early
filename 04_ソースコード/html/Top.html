@@ -106,13 +106,36 @@ $sessionCheck->checkSession();?>
       <?php 
         if(isset($_POST['category'])){
           $group = $cls->getGroupTblByCategoryCode($_POST['category']);
-          foreach($group as $row){
-            echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/'.$row['group_image'].'" alt="グループ画像"></a></div>';
-          }
+          foreach ($group as $row) {
+            $joinuser = $cls->getGroupInfoTblByGroupId($row['group_id']);
+            $isJoined = false; // 参加済みフラグを初期化
+          
+            foreach ($joinuser as $row2) {
+              if ($_SESSION['userid'] == $row2['user_id']) {
+                $isJoined = true; // 参加済みフラグを立てる
+                break;
+              }
+            }
+          
+            if (!$isJoined) {
+              echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/' . $row['group_image'] . '" alt="グループ画像"></a></div>';
+            }
+          }  
         }else if(isset($_POST['key'])){
           $group = $cls->getGroupTblByKeyword($_POST['key']);
           foreach($group as $row){
-            echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/'.$row['group_image'].'" alt="グループ画像"></a></div>';
+            $joinuser = $cls->getGroupInfoTblByGroupId($row['group_id']);
+            $isJoined = false; // 参加済みフラグを初期化
+          
+            foreach ($joinuser as $row2) {
+              if ($_SESSION['userid'] == $row2['user_id']) {
+                $isJoined = true; // 参加済みフラグを立てる
+                break;
+              }
+            }
+            if (!$isJoined) {
+              echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/' . $row['group_image'] . '" alt="グループ画像"></a></div>';
+            }
           }
         }
       ?>

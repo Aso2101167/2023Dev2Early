@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 require_once '../php/SessionCheck.php';
 
 // セッションチェックを行う
@@ -40,7 +40,7 @@ $groupid = $_GET['groupid'];
     
     <div>
         <!--戻るボタン-->
-        <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: lightgray; border: white; margin-right: auto; font-size: 20px;">
+        <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px;">
           ＜
         </button>
     <div class="text">
@@ -93,9 +93,9 @@ $groupid = $_GET['groupid'];
           }?>
         </p>
     </div>
-    <form action="../php/Quit.php?$groupid=<?php echo $_GET['groupid'];?>" method="post">
+    <form action="../php/Quit.php?groupid=<?php echo $_GET['groupid'];?>" method="post">
     <div class="form-floating">
-        <button class="Button-1" type="submit">QUIT</output></button>
+        <button class="Button-1" type="submit" name="quit" value="quit">QUIT</button>
     </div>
 
     

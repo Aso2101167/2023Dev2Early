@@ -28,13 +28,8 @@ body{
     font-size: .9em;
 }
 
-.mid{
-    padding-left:30%;
-    padding-right:30%;
-}
-
 .form-control{
-    width: 100%;
+    width: 60%;
     padding: 8px 10px;
     border: 1px solid #969da3;
     border-radius: 3px;
@@ -46,7 +41,7 @@ body{
 }
 
 .Button{
-    width: 100%;
+    width: 60%;
     padding: 8px 10px;
     border: 1px solid #FFA0C2;
 	color: #FFFFFF;
@@ -66,7 +61,9 @@ hr {
 }
 
 .err{
-    margin-left:0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
 }
 
 .errmsg{

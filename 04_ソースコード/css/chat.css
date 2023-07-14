@@ -112,3 +112,20 @@
           text-decoration: none;
         }
       }
+
+    section{
+      padding: 2%;
+    }
+
+    .alert{
+      width: 70%;
+    }
+
+    .row{
+      margin-right: 0;
+    margin-left: 0;
+    }
+
+    .col-sm-offset-4 {
+      margin-left: 33.333333%;
+  }

@@ -127,7 +127,7 @@
             // 削除クエリの準備
             $sql = "DELETE FROM Groups WHERE group_id = ?";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1, $groupId, PDO::PARAM_STR);
+            $ps->bindValue(1, $getgroupid, PDO::PARAM_STR);
     
             // 削除クエリの実行
             $ps->execute();

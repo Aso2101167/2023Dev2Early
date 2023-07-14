@@ -43,13 +43,14 @@ $sessionCheck->checkSession();?>
     <main class="form-signin">
       <form action="Top.html" method="post">
             <!--戻るボタン-->
-            
-        <button class="returnbtn">
-            <img class="returnbtn" src="/docs/5.0/assets/brand/bootstrap-button.svg" alt="" width="15" height="15">
-          </button>
-          <div class="text">
+            <div style="display: flex; align-items: center; justify-content: center; margin: 20px;">
+              <button onclick="location.href='Top.html'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px;">
+                ＜
+              </button>
+          <div class="text" style="position: absolute;">
             <h1>オープンチャット参加</h1>
           </div>
+            </div>
       </form>
         <div class="img">
           <?php 
@@ -101,7 +102,7 @@ $sessionCheck->checkSession();?>
               }?>
             </p>
         </div>
-        <form action="../php/Join.php" method="POST">
+        <form action="../php/Join.php?groupid=<?php echo $_GET['groupid'];?>" method="POST">
         <div class="form-floating">
             <button class="Button" type="submit" name="join" value="<?php echo $_POST['groupid'];?>">Join</button>
         </div>
