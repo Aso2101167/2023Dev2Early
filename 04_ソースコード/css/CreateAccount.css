@@ -23,8 +23,11 @@ body{
 }
 
 .mid{
-    padding-left:30%;
-    padding-right:30%;
+    width: 60%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-floating{
@@ -42,7 +45,7 @@ body{
     line-height: 1.5;
     padding-top:10px;
     padding-bottom:10px;
-    font-size:25px;
+    font-size:inherit;
 }
 
 .txt{

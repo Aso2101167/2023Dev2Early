@@ -5,6 +5,7 @@ require_once '../php/SessionCheck.php';
 $sessionCheck = new SessionCheck();
 $sessionCheck->checkSession();
 $groupid = $_GET['groupid'];
+$userid = $_GET['userid'];
 ?>
 <DOCTYPE html>
   <html lang="en">
@@ -40,7 +41,7 @@ $groupid = $_GET['groupid'];
     
     <div>
         <!--戻るボタン-->
-        <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px;">
+        <button onclick="location.href='Chat.html?groupid=<?php echo $groupid;?>&userid=<?php echo $userid;?>'" class="recommendation-1st" style="background-color: white; border: white; margin-right: auto; font-size: 20px;">
           ＜
         </button>
     <div class="text">

@@ -118,7 +118,7 @@ $sessionCheck->checkSession();?>
             }
           
             if (!$isJoined) {
-              echo '<div class="col-sm-6">チャット名：' . $row['group_name'] . ' グループ説明文：' . $row['group_text'] . '<a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/' . $row['group_image'] . '" alt="グループ画像"></a></div>';
+              echo '<div class="col-sm-6" style="padding-left: 3%;"><div class="groupinfo"><div class="groupname">チャット名：' . $row['group_name'] . '</div><div class="grouptext"> グループ説明文：' . $row['group_text'] . '</div></div><a href="Join.html?groupid=' . $row['group_id'] . '"><img src="../img/' . $row['group_image'] . '" alt="グループ画像"></a></div>';
             }
           }  
         }else if(isset($_POST['key'])){
