@@ -1,5 +1,6 @@
 # 2023Dev2Early
 2023システム開発演習Ⅱ前期一班チームレポジトリ
+URL:http://muku-0609.catfood.jp/OPENCHAT/html/login.html
 <h3>メンバー（役割）</h3>
 小谷（リーダー/バックエンド）<br>
 白濵（サブリーダー/バックエンド）<br>
